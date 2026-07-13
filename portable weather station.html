@@ -1,0 +1,396 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Autonomous Portable Weather Station - Tech Portfolio</title>
+    <meta name="description" content="Industrial IoT Agri-Tech Weather Station using LoRa and ATmega328P">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    
+    <style>
+    /* -----------------------------
+       Very Light Green Tech Palette
+       ----------------------------- */
+    :root {
+        --agri-dark: #1b5e20;
+        --agri-main: #4caf50;
+        --agri-light: #c8e6c9;
+        --agri-accent: #81c784;
+        --card-bg: #ffffff;
+        --bg-light: #f1f8f5;
+        --text-dark: #2e3d34;
+        --white: #ffffff;
+    }
+
+    body {
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* -----------------------------
+       Light Green Cyber Data-Stream Line Decorations
+       ----------------------------- */
+    .stream-container {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .data-line {
+        position: absolute;
+        background: linear-gradient(90deg, transparent, var(--agri-accent), transparent);
+        height: 2px;
+        width: 280px;
+        opacity: 0.5;
+    }
+    .line-1 { top: 12%; left: -10%; animation: dataMoveRight 9s linear infinite; }
+    .line-2 { top: 32%; right: -10%; animation: dataMoveLeft 11s linear infinite; }
+    .line-3 { top: 58%; left: -10%; animation: dataMoveRight 13s linear infinite; }
+    .line-4 { top: 82%; right: -10%; animation: dataMoveLeft 10s linear infinite; }
+
+    @keyframes dataMoveRight {
+        0% { transform: translateX(0); left: -20%; }
+        100% { transform: translateX(120vw); left: 100%; }
+    }
+    @keyframes dataMoveLeft {
+        0% { transform: translateX(0); right: -20%; }
+        100% { transform: translateX(-120vw); right: 100%; }
+    }
+    
+    /* Navigation Adjustments */
+    .header-area { box-shadow: 0 2px 15px rgba(0,0,0,0.03); background: var(--white); padding: 15px 0; position: relative; z-index: 10; }
+    .main-menu ul { display: flex; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
+    .main-menu ul li { margin-left: 30px; }
+    .main-menu ul li a { font-weight: 600; color: var(--text-dark); text-decoration: none; padding: 10px 0; display: block; }
+    .main-menu ul li a:hover { color: var(--agri-dark); }
+    
+    .section-padding { padding: 80px 0; position: relative; z-index: 1; }
+    
+    /* Premium Content Cards */
+    .tech-card {
+        background: var(--card-bg);
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 12px 35px rgba(27, 94, 32, 0.03);
+        margin-bottom: 35px;
+        border-left: 6px solid var(--agri-accent);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        height: 100%;
+    }
+    .tech-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 40px rgba(27, 94, 32, 0.07);
+        border-left-color: var(--agri-main);
+    }
+    .tech-card.highlight-card { border-left-color: var(--agri-dark); }
+
+    h2, h3, h4 { color: var(--agri-dark); font-weight: 700; margin-bottom: 22px; }
+    p { line-height: 1.8; color: #4f5e55; font-size: 1.05em; text-align: justify; }
+
+    /* Anti-Cropping Media Grid Configuration */
+    .media-box {
+        width: 100%;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+        background: var(--white);
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #e8f5e9;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    }
+    .media-box:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 30px rgba(76, 175, 80, 0.15);
+    }
+    .media-box img {
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        object-fit: contain; /* Absolutely no clipping or text overlap allowed */
+        display: block;
+        margin: 0 auto;
+    }
+    .media-box.small-grid img { max-height: 230px; }
+
+    .master-caption {
+        text-align: center; font-weight: 700; color: var(--agri-dark); margin-top: 10px; margin-bottom: 35px; font-size: 1.15em;
+        letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 2px solid rgba(27, 94, 32, 0.1); padding-bottom: 12px;
+    }
+
+    /* System Micro-Badges */
+    .spec-tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+    .spec-tags li { 
+        background: var(--agri-light);
+        color: var(--agri-dark);
+        padding: 8px 18px; 
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.9em;
+        display: flex; align-items: center;
+        border: 1px solid rgba(27, 94, 32, 0.1);
+    }
+    .spec-tags li i { margin-right: 8px; color: var(--agri-dark); }
+
+    /* Immersive Hero Header Container with Transparent AI Image Backdrop */
+    .hero-canvas {
+        position: relative;
+        background-image: url('assets/img/My Projects/portable waether station/Gemini_Generated_Image_u1bom2u1bom2u1bo.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 160px 0;
+        text-align: center;
+        z-index: 1;
+    }
+    .hero-canvas::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(241, 248, 245, 0.88); /* Smooth Very Light Green Transparent Overlay */
+        backdrop-filter: blur(2px);
+        z-index: -1;
+    }
+
+    /* Structural Core Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleUp { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+    
+    .anim-fade-up { animation: fadeUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) both; }
+    .anim-scale-up { animation: scaleUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) both; }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.3s; }
+    .stagger-3 { animation-delay: 0.5s; }
+    
+    footer { background: var(--white); border-top: 1px solid #e8f5e9; padding: 35px 0; text-align: center; margin-top: 50px; position: relative; z-index: 5;}
+    </style>
+</head>
+
+<body>
+    <div class="stream-container">
+        <div class="data-line line-1"></div>
+        <div class="data-line line-2"></div>
+        <div class="data-line line-3"></div>
+        <div class="data-line line-4"></div>
+    </div>
+
+    <header>
+        <div class="header-area header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <div class="logo">
+                            <h4 style="font-weight: bold; color: var(--agri-dark); margin: 0; cursor: default; letter-spacing: 1px;">AGRI-SPACE TELEMETRY</h4>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8">
+                        <div class="main-menu d-none d-lg-block">
+                            <nav> 
+                                <ul id="navigation">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="blog_details.html">Projects</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="hero-canvas">
+            <div class="container">
+                <div class="hero-text anim-scale-up stagger-1">
+                    <div style="display: inline-block; padding: 12px 24px; background: rgba(76, 175, 80, 0.12); border: 1px solid var(--agri-main); border-radius: 30px; margin-bottom: 25px;">
+                        <span style="color: var(--agri-dark); font-weight: 700; letter-spacing: 2px; font-size: 0.85em;">ADVANCED INDUSTRIAL ECO-TELEMETRY</span>
+                    </div>
+                    <h1 style="color: var(--agri-dark); font-weight: 800; font-size: 3.4em; margin-bottom: 15px;">Autonomous Portable Weather Station Grid</h1>
+                    <p style="font-size: 1.25em; color: #386641; font-weight: 500; text-align: center; max-width: 850px; margin: 0 auto;">Precision Real-Time Micro-Climate Analysis Matrix for High-Yield Commercial Export Plantations</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="section-padding">
+            <div class="container">
+                
+                <div class="row mb-5 anim-fade-up stagger-1">
+                    <div class="col-12">
+                        <div class="tech-card highlight-card">
+                            <h2><i class="fas fa-landmark"></i> Institutional Mandate & Development Leadership</h2>
+                            <p>This industrial-grade, portable environmental monitoring architecture was conceptualized, designed, and fully engineered within the <strong>Communication and Space Engineering Division</strong> at the <strong>Arthur C. Clarke Institute for Modern Technologies (ACCIMT)</strong>. The highly complex deployment execution was driven under the expert management and technical oversight of <strong>Senior Electronic Research Scientist Mr. Samantha</strong>, alongside the Division Head. Our engineering group successfully finalized and brought this innovative system to complete end-to-end operational readiness.</p>
+                            <p>The system actively aims to safeguard and dynamically maximize the production quality of wide-scale regional plantation sectors. By scanning vital field metrics such as dynamic fertilizer levels, localized soil structures, absolute hydration values, and micro-climate fluctuations, the system delivers real-time, on-time telemetry. This actionable analytical stream allows immediate critical local adjustments alongside high-level long-term strategy formulations to guarantee agricultural optimization.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 justify-content-center anim-fade-up stagger-2">
+                    <div class="col-12">
+                        <h3><i class="fas fa-microchip"></i> Embedded Core & Hardware Implementation</h3>
+                        <p class="mb-4">The core system infrastructure centers around a custom-engineered embedded electronics panel driven by the <strong>ATmega328P microcontroller</strong>. A highly resilient, noise-isolated PCB architecture was formulated to reliably integrate the global sensor matrix with specialized power regulators, long-life battery arrays, and solar conversion circuits.</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.33 AM.jpg" alt="PCB Solder Integration 1">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.36 AM.jpg" alt="PCB Solder Integration 2">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.35 AM.jpg" alt="ATmega328P Integration">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.32 AM (1).jpg" alt="Control Panel Assembly 1">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.32 AM.jpg" alt="Control Panel Assembly 2">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.33 AM (1).jpg" alt="Control Panel Assembly 3">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.27 AM.jpg" alt="Chassis Profile 1">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.28 AM (1).jpg" alt="Chassis Profile 2">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <div class="media-box small-grid">
+                                    <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.28 AM.jpg" alt="Chassis Profile 3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="master-caption"><i class="fas fa-wrench"></i> Hardware Implementation, Processing Nodes & Embedded System Architecture</div>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-lg-6 mb-4 anim-fade-up stagger-1">
+                        <div class="tech-card">
+                            <h3><i class="fas fa-sliders-h"></i> Environmental Sensor Interfacing</h3>
+                            <p>To acquire comprehensive micro-climate datasets, the platform interfaces an extensive array of industrial transducers. These include precise soil moisture and soil composition sensors, multi-tiered humidity units, a high-accuracy sea level sensor, rain sensors, and industrial-grade instruments capturing both wind speed and wind direction parameters.</p>
+                            <p>For data communication across broad, remote plantation regions lacking standard cellular networks, we integrated high-efficiency <strong>LoRa (Long Range) transceiver nodes</strong>. This configuration guarantees multi-kilometer telemetry transmission paths directly to a local aggregator node while drawing minimal power.</p>
+                            
+                            <div class="media-box mt-4">
+                                <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.27 AM (1).jpg" alt="Sea Level Sensor Integration">
+                            </div>
+                            <div class="master-caption"><i class="fas fa-water"></i> Industrial Sea Level Sensor Module Integration</div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-4 anim-fade-up stagger-2">
+                        <div class="tech-card">
+                            <h3><i class="fas fa-sun"></i> Renewable Solar Management Subsystem</h3>
+                            <p>Operating completely off-grid in rugged agricultural territory demands total power self-sufficiency. The system mounts an industrial-grade <strong>Solar Panel Array</strong> wired directly into specialized step-down solar converters, safety charge regulators, and a high-capacity lithium iron phosphate battery pack.</p>
+                            <p>This design maintains stable 5V and 3.3V power rails for the sensitive processing logic and LoRa transmitters, ensuring continuous tracking even through multi-day monsoons or heavy seasonal overcasts.</p>
+                            
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.30 AM (2).jpg" alt="Solar Array Profile 1">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.30 AM (1).jpg" alt="Solar Array Profile 2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="master-caption"><i class="fas fa-charging-station"></i> Solar Harvesting Module and Power Converting Matrix</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-3">
+                    <div class="col-12">
+                        <div class="tech-card" style="border-left-color: var(--agri-main);">
+                            <h3><i class="fas fa-cloud-upload-alt"></i> Unified Telemetry Network & National Plantation Deployment</h3>
+                            <p>Once acquired and packetized by the embedded controller, all regional environmental telemetry is transmitted and uploaded instantly to a secure, centralized web dashboard platform. Due to the strict regulations and confidentiality rules maintained at ACCIMT, the specific dashboard structures and layout components are hidden from this public asset presentation.</p>
+                            <p>This central network allows agricultural experts and scientific research officers to monitor nationwide regional sectors from one operations hub. Decisions and structural interventions are dispatched dynamically to protect high-value national export crops, primarily focused on premium <strong>Tea and Rubber plantations</strong>. The systems are currently deployed across vast, demanding high-altitude topographies, including extensive zones throughout <strong>Nuwara Eliya, Badulla, Kegalle, Sabaragamuwa, Ambewela, and Abepussa</strong>.</p>
+                            <ul class="spec-tags mt-4">
+                                <li><i class="fas fa-broadcast-tower"></i> LoRa Network Layer</li>
+                                <li><i class="fas fa-leaf"></i> Premium Export Crop Protection</li>
+                                <li><i class="fas fa-chart-line"></i> Analytics-Driven Intervention</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 align-items-center anim-fade-up stagger-1">
+                    <div class="col-md-7">
+                        <div class="tech-card">
+                            <h3><i class="fas fa-users"></i> ACCIMT Project Implementation Group</h3>
+                            <p>The success of this complex engineering effort stems from the collaborative focus maintained inside the specialized research laboratories at ACCIMT. Under institutional guidance, our engineering group pushed the system past standard lab testing into a highly hardened, robust commercial field platform, proving the power of national technical research facilities.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="media-box">
+                            <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.31 AM.jpg" alt="ACCIMT Core Development Group">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="master-caption"><i class="fas fa-users"></i> ACCIMT Communications & Space Engineering Lab Group</div>
+                    </div>
+                </div>
+
+                <div class="row anim-fade-up stagger-2">
+                    <div class="col-12">
+                        <div class="tech-card" style="border-left: none; border-top: 6px solid var(--agri-dark);">
+                            <h3><i class="fas fa-award"></i> High-Level Recognition at Sahasak Nimavum</h3>
+                            <p class="mb-4">The completed Portable Weather Station was chosen to be showcased at the prestigious <strong>Sahasak Nimavum National Invention Exhibition</strong> held at the <strong>BMICH, Colombo</strong>. The system secured significant acclaim from evaluating panels, ministerial directors, and senior state officials, receiving commendation for its immediate economic value and role in advancing Sri Lanka's smart agricultural infrastructure.</p>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="media-box">
+                                        <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.30 AM.jpg" alt="Sahasak Nimavum Pavilion Showcase">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="media-box">
+                                        <img src="assets/img/My Projects/portable waether station/WhatsApp Image 2026-07-08 at 11.18.25 AM.jpg" alt="Ministerial Technical Briefing">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="master-caption"><i class="fas fa-medal"></i> National Invention Exhibition Platform & State Briefings at BMICH</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="color: #7f9487; margin: 0; font-size: 0.9em;">&copy; <script>document.write(new Date().getFullYear());</script> S M G A SIPKADUWA | Embedded Systems & Telecommunication. Core IP and data rights reserved under ACCIMT regulations.</p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+</body>
+</html>

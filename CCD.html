@@ -1,0 +1,656 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>SONY ILX555K CCD Drive & Analysis | Engineering Portfolio</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/animate.min.css">
+   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+
+   <style>
+      /* --- Deep Blue & Purple Tech Theme Style (High Contrast) --- */
+      body {
+         background-color: #050b14;
+         color: #ffffff;
+         font-family: 'Poppins', sans-serif;
+         position: relative;
+         overflow-x: hidden;
+      }
+
+      /* Visible Digital Grid Background Animation */
+      .bg-signal-animation {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100vw;
+         height: 100vh;
+         z-index: -1;
+         background: #050b14;
+         background-image: 
+            linear-gradient(rgba(109, 40, 217, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(109, 40, 217, 0.3) 1px, transparent 1px);
+         background-size: 40px 40px;
+         animation: gridMove 10s linear infinite;
+      }
+      @keyframes gridMove {
+         0% { background-position: 0 0; }
+         100% { background-position: 0 40px; }
+      }
+
+      /* --- NEW Floating Navbar Box Style --- */
+      .header-area {
+         background: transparent;
+         position: absolute;
+         top: 20px;
+         width: 100%;
+         z-index: 999;
+      }
+      .nav-wrapper {
+         background: rgba(15, 23, 42, 0.85);
+         backdrop-filter: blur(12px);
+         border: 1px solid rgba(139, 92, 246, 0.5);
+         border-radius: 40px;
+         padding: 10px 30px;
+         display: inline-block;
+         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      }
+      .nav-wrapper ul {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+         display: flex;
+         align-items: center;
+      }
+      .nav-wrapper li {
+         margin: 0 15px;
+      }
+      .nav-wrapper a {
+         color: #e2e8f0 !important;
+         font-weight: 600;
+         font-size: 15px;
+         text-decoration: none;
+         transition: all 0.3s ease;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+      .nav-wrapper a:hover, .nav-wrapper a.active-link {
+         color: #c4b5fd !important;
+         text-shadow: 0 0 10px rgba(196, 181, 253, 0.6);
+      }
+
+      /* Hero Banner Styles */
+      .slider-area {
+         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+         padding: 180px 0 80px 0; 
+         border-bottom: 4px solid #8b5cf6;
+         box-shadow: 0 4px 30px rgba(139, 92, 246, 0.2);
+      }
+      .hero-cap h2 {
+         color: #ffffff !important;
+         font-weight: 800;
+         font-size: 38px;
+         margin-bottom: 15px;
+         text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Educational Section Flow Container */
+      .edu-section {
+         padding: 50px 0;
+         border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+         position: relative;
+      }
+      .step-badge {
+         background: linear-gradient(90deg, #8b5cf6, #4f46e5);
+         color: #ffffff;
+         padding: 6px 16px;
+         border-radius: 50px;
+         font-size: 14px;
+         font-weight: 700;
+         display: inline-block;
+         margin-bottom: 15px;
+         text-transform: uppercase;
+         box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+      }
+      .section-title-custom {
+         color: #c4b5fd;
+         font-weight: 700;
+         font-size: 26px;
+         margin-bottom: 20px;
+         transition: all 0.3s ease;
+      }
+      .edu-section:hover .section-title-custom {
+         color: #a78bfa;
+         text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+      }
+      
+      p, li {
+         font-size: 16px;
+         line-height: 1.8;
+         color: #e2e8f0;
+      }
+
+      /* Technical Tables */
+      .table-custom {
+         background: #0f172a;
+         color: #ffffff;
+         border: 1px solid #334155;
+         border-radius: 8px;
+         overflow: hidden;
+         margin-top: 20px;
+         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+      .table-custom th {
+         background-color: #1e1b4b;
+         color: #c4b5fd;
+         border-bottom: 2px solid #6d28d9;
+         font-weight: 600;
+      }
+      .table-custom td, .table-custom th {
+         padding: 12px 15px;
+         border-top: 1px solid #1f2937;
+      }
+      .table-custom tbody tr:hover {
+         background-color: rgba(109, 40, 217, 0.1);
+         transition: background-color 0.2s ease;
+      }
+
+      /* Alert and Highlight Boxes */
+      .warning-box {
+         background: rgba(220, 38, 38, 0.15);
+         border-left: 5px solid #ef4444;
+         padding: 20px;
+         border-radius: 4px;
+         margin: 20px 0;
+         box-shadow: 0 4px 15px rgba(239, 68, 68, 0.1);
+      }
+      /* --- UPDATED: Ensures the heading inside warning box is always white --- */
+      .warning-box h5 {
+         color: #ffffff !important;
+         text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+      }
+      
+      .info-highlight {
+         background: rgba(79, 70, 229, 0.15);
+         border-left: 5px solid #6366f1;
+         padding: 20px;
+         border-radius: 4px;
+         margin: 20px 0;
+         box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+      }
+
+      /* --- White Wrap Style for Core Operating Parameters --- */
+      .core-params-wrap {
+         background: rgba(255, 255, 255, 0.08);
+         border: 1px solid rgba(255, 255, 255, 0.4);
+         border-left: 5px solid #ffffff;
+         border-radius: 6px;
+         padding: 22px;
+         margin: 25px 0;
+         box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+      }
+      .core-params-wrap h5 {
+         color: #ffffff !important;
+         font-weight: 700;
+         margin-bottom: 15px;
+         letter-spacing: 0.5px;
+      }
+      .core-params-wrap ul li {
+         color: #ffffff !important;
+         margin-bottom: 8px;
+      }
+      .core-params-wrap ul li strong {
+         color: #ffffff !important;
+         text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      }
+
+      /* Image Styling */
+      .image-container-custom {
+         background: #1e293b;
+         border: 2px solid #6d28d9;
+         border-radius: 12px;
+         overflow: hidden;
+         margin: 25px 0;
+         box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+         transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+      .image-container-custom:hover {
+         transform: scale(1.01);
+         border-color: #8b5cf6;
+      }
+      .image-container-custom img {
+         width: 100%;
+         height: auto;
+         display: block;
+      }
+      .image-caption {
+         background: #0b1120;
+         padding: 12px 15px;
+         font-size: 14px;
+         color: #94a3b8;
+         text-align: center;
+         border-top: 1px solid #334155;
+         font-weight: 500;
+      }
+
+      /* File Download Buttons */
+      .btn-download-custom {
+         background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%);
+         color: #ffffff !important;
+         font-weight: 600;
+         padding: 10px 20px;
+         border-radius: 6px;
+         display: inline-flex;
+         align-items: center;
+         text-decoration: none;
+         margin-top: 15px;
+         margin-right: 15px;
+         transition: 0.3s;
+         border: 1px solid #8b5cf6;
+         box-shadow: 0 4px 15px rgba(109, 40, 217, 0.3);
+      }
+      .btn-download-custom:hover {
+         background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 100%);
+         transform: translateY(-2px);
+         box-shadow: 0 6px 20px rgba(109, 40, 217, 0.5);
+      }
+      .btn-download-custom i {
+         margin-right: 8px;
+         font-size: 18px;
+      }
+
+      /* Code Block / Mapping Styles */
+      .mapping-list {
+         background: #0f172a;
+         padding: 20px;
+         border-radius: 8px;
+         border: 1px solid #1e1b4b;
+         font-family: 'Courier New', Courier, monospace;
+         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      }
+      .mapping-list div {
+         box-sizing: border-box;
+      }
+      .mapping-item {
+         display: flex;
+         justify-content: space-between;
+         padding: 8px 0;
+         border-bottom: 1px solid #1e293b;
+      }
+      .mapping-item:last-child { border-bottom: none; }
+      .mapping-label { color: #38bdf8; }
+      .mapping-value { color: #34d399; font-weight: bold; }
+   </style>
+</head>
+
+<body>
+   <div class="bg-signal-animation"></div>
+
+   <header>
+      <div class="header-area">
+         <div class="container-fluid">
+            <div class="row align-items-center">
+               <div class="col-xl-2 col-lg-2 col-md-2">
+                  <div class="logo">
+                     <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                  </div>
+               </div>
+               <div class="col-xl-10 col-lg-10 col-md-10">
+                  <div class="d-flex align-items-center justify-content-end">
+                     <div class="nav-wrapper d-none d-lg-block">
+                        <nav> 
+                           <ul>
+                              <li><a href="index.html">Home</a></li>
+                              <li><a href="about.html">About</a></li>
+                              <li><a href="blog_details.html" class="active-link">Projects</a></li>
+                              </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>   
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <main>
+      <div class="slider-area">
+         <div class="container">
+            <div class="row">
+               <div class="col-xl-12">
+                  <div class="hero-cap text-center text-lg-left">
+                     <h2>Driving the SONY ILX555K CCD Sensor</h2>
+                     <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center justify-content-lg-start">
+                           <li class="breadcrumb-item"><a href="index.html" style="color:#94a3b8;">Home</a></li>
+                           <li class="breadcrumb-item"><a href="blog_details.html" style="color:#94a3b8;">Projects</a></li> 
+                           <li class="breadcrumb-item active" style="color:#c4b5fd;">CCD Driver Guide</li> 
+                        </ol>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="container" style="padding-top: 30px; padding-bottom: 80px;">
+         
+         <div class="image-container-custom">
+            <img src="assets/img/My Projects/CCD/WhatsApp Image 2026-07-08 at 9.49.48 PM.jpg.jpg" alt="SONY ILX555K Hardware Setup">
+            <div class="image-caption">Main System Architecture - SONY ILX555K CCD Linear Sensor Core System Prototype</div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 01</span>
+            <h3 class="section-title-custom"><i class="fas fa-info-circle"></i> Introduction to SONY ILX555K CCD Sensor</h3>
+            <p>
+               The SONY ILX555K is a highly accurate, reduction-type CCD (Charge-Coupled Device) linear image sensor. Primarily designed for color document scanners, it possesses the capability to scan A4-sized documents at an impressive 1200 DPI resolution. The internal structure contains 32,040 effective pixels, divided into 10,680 pixels across three color channels (Red, Green, and Blue).
+            </p>
+            
+            <div class="core-params-wrap">
+               <h5>🎛️ Core Operating Parameters:</h5>
+               <ul>
+                  <li><strong>Working Frequency:</strong> Operates between 1 MHz and a maximum of 5 MHz (Data Rate Per Color).</li>
+                  <li><strong>Logic Level:</strong> Driven by 5V CMOS Logic. All input clock pulses must strictly maintain a 5V amplitude.</li>
+                  <li><strong>Power Supply:</strong> Requires a single 12V DC power supply for operation.</li>
+               </ul>
+            </div>
+            
+            <a href="ILX555K Data sheet.PDF" class="btn-download-custom" target="_blank">
+               <i class="far fa-file-pdf"></i> Download SONY ILX555K Datasheet
+            </a>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 02</span>
+            <h3 class="section-title-custom"><i class="fas fa-th-list"></i> Pin Configuration and Roles</h3>
+            <p>
+               To successfully drive a CCD, understanding the precise function of its 22 pins is crucial. The following table and diagram break down the pin architecture as specified in the official datasheet.
+            </p>
+
+            <div class="image-container-custom" style="max-width: 500px; margin: 20px auto;">
+               <img src="assets/img/My Projects/CCD/PINS.jpg" alt="CCD Pinout Diagram">
+               <div class="image-caption">Figure 2.1: SONY ILX555K Pin Configuration (Top View)</div>
+            </div>
+
+            <div class="table-responsive">
+               <table class="table table-custom">
+                  <thead>
+                     <tr>
+                        <th>Pin No.</th>
+                        <th>Symbol</th>
+                        <th>Description & Role</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr><td>1</td><td>NC</td><td>No Connection.</td></tr>
+                     <tr><td>2</td><td>Clock 1</td><td>Clock Pulse 1 - Primary transport clock for moving pixel charges.</td></tr>
+                     <tr><td>3</td><td>Clock RS</td><td>Reset Clock Pulse - Resets the output charge amplifier for the next pixel.</td></tr>
+                     <tr><td>4</td><td>GND</td><td>System Ground.</td></tr>
+                     <tr><td>5</td><td>VOUT-G</td><td>Green channel analog video output.</td></tr>
+                     <tr><td>6</td><td>VDD</td><td>+12V Main Power Supply.</td></tr>
+                     <tr><td>7</td><td>Clock 2</td><td>Clock Pulse 2 - Secondary transport clock (Anti-phase to Clock 1).</td></tr>
+                     <tr><td>8</td><td>ROG-R</td><td>Readout Gate (Red) - Transfers accumulated red pixel charges to shift register.</td></tr>
+                     <tr><td>9</td><td>ROG-B</td><td>Readout Gate (Blue) - Transfers blue pixel charges to shift register.</td></tr>
+                     <tr><td>10, 11</td><td>NC</td><td>No Connection.</td></tr>
+                     <tr><td>12</td><td>VOUT-B</td><td>Blue channel analog video output.</td></tr>
+                     <tr><td>13</td><td>GND</td><td>System Ground.</td></tr>
+                     <tr><td>14</td><td>ROG-G</td><td>Readout Gate (Green) - Transfers green pixel charges to shift register.</td></tr>
+                     <tr><td>15</td><td>VOUT-R</td><td>Red channel analog video output.</td></tr>
+                     <tr><td>16, 17</td><td>Clock 2 (Dup)</td><td>Duplicated pins for Transport Clock 2 to handle high current loads.</td></tr>
+                     <tr><td>18, 19</td><td>Clock 1 (Dup)</td><td>Duplicated pins for Transport Clock 1.</td></tr>
+                     <tr><td>20</td><td>GND</td><td>System Ground.</td></tr>
+                     <tr><td>21</td><td>Clock 2 (Dup)</td><td>Duplicated pin for Transport Clock 2.</td></tr>
+                     <tr><td>22</td><td>NC</td><td>No Connection.</td></tr>
+                  </tbody>
+               </table>
+            </div>
+
+            <div class="image-container-custom">
+               <img src="assets/img/My Projects/CCD/pins role.jpg" alt="Pins Role Block Diagram">
+               <div class="image-caption">Figure 2.2: Internal Block Diagram and Pin Roles</div>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 03</span>
+            <h3 class="section-title-custom"><i class="fas fa-wave-square"></i> The 4 Critical Input Signals</h3>
+            <p>
+               According to the datasheet, activating this CCD sensor requires four highly synchronized input signals. These signals must be accurate down to the microsecond level.
+            </p>
+            <div class="row">
+               <div class="col-md-6">
+                  <ul>
+                     <li><strong>1. Clock 1:</strong> The primary transport clock. It pushes the stored electrical charges inside the pixels toward the output amplifier.</li>
+                     <li><strong>2. Clock 2:</strong> The secondary transport clock. This must be exactly 180 degrees out of phase (anti-phase) with Clock 1. They must never overlap.</li>
+                  </ul>
+               </div>
+               <div class="col-md-6">
+                  <ul>
+                     <li><strong>3. Reset Clock (Clock RS):</strong> A high-speed pulse that clears the output amplifier's previous charge before the next pixel's data is pushed out.</li>
+                     <li><strong>4. Readout Gate (ROG):</strong> The main trigger pulse that latches all accumulated light charges from the photodiode array into the shift register at once.</li>
+                  </ul>
+               </div>
+            </div>
+
+            <div class="warning-box">
+               <strong>⚠️ Synchronization & Speed Constraints:</strong><br>
+               These four signals must be phase-aligned with nanosecond precision. Since the system runs at high speeds (1MHz to 5MHz), even a slight timing jitter will completely distort the analog output, resulting in severe image noise or total failure to capture the image.
+            </div>
+
+            <div class="image-container-custom">
+               <img src="assets/img/My Projects/CCD/timming diagram.jpg" alt="CCD Core Timing Diagram">
+               <div class="image-caption">Figure 3.1: Fundamental Timing Diagram from the Datasheet</div>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 04</span>
+            <h3 class="section-title-custom"><i class="fas fa-charging-station"></i> The 1200pF Input Capacitance Challenge</h3>
+            <p>
+               One of the biggest hardware challenges when driving this CCD is its incredibly high input capacitance. The Clock 1 and Clock 2 input pins of the ILX555K have a capacitance of <strong>1200pF</strong>.
+            </p>
+            <div class="info-highlight">
+               <h5>🤔 Why are the same clock signals assigned to multiple pins?</h5>
+               <p>
+                  Switching a massive 1200pF load at 5MHz requires a significant instantaneous peak current. If this current is supplied through a single pin, the internal resistance will degrade the signal's sharp edges and cause the chip to heat up.
+               </p>
+               <p>
+                  Therefore, the manufacturer has duplicated the <strong>Clock 1 (Pins 18, 19)</strong> and <strong>Clock 2 (Pins 16, 17, 21)</strong> connections. By wiring these parallel pins together, the current load is distributed, preserving the high-speed signal integrity.
+               </p>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 05</span>
+            <h3 class="section-title-custom"><i class="fas fa-times-circle"></i> Why Arduino or ESP Technologies Fail Here</h3>
+            
+            <div class="warning-box">
+               <h5>❌ Limitations of Standard Microcontrollers:</h5>
+               <p>
+                  <strong>1. Non-Deterministic Timing:</strong> Standard Arduino (ATmega328p) or ESP32 boards cannot generate highly stable, jitter-free nanosecond pulses using code, as background tasks and software interrupts disrupt the timing.
+               </p>
+               <p>
+                  <strong>2. Lack of Advanced Hardware Timers:</strong> Generating four perfectly phase-aligned signals requires advanced hardware timer registers which basic microcontrollers do not possess.
+               </p>
+               <p>
+                  <strong>3. Weak GPIO Current Drive:</strong> The IO pins on an Arduino cannot supply the necessary source/sink current to rapidly charge and discharge a 1200pF load.
+               </p>
+               <p>
+                  <strong>4. ADC Speed Constraints:</strong> The analog outputs (R, G, B) must be sampled simultaneously at high speeds. Standard chips lack parallel, multi-channel high-speed ADC engines.
+               </p>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 06</span>
+            <h3 class="section-title-custom"><i class="fas fa-microchip"></i> The Solution: STM32F411CEU6 & Hardware Mapping</h3>
+            <p>
+               To overcome these bottlenecks, I utilized the <strong>STM32F411CEU6 (Black Pill)</strong> microcontroller, featuring an ARM Cortex-M4 core running at 100MHz. By leveraging its <strong>Advanced-control Timer (TIM1)</strong>, the signals are generated entirely at the hardware level (Hardware PWM), guaranteeing absolute synchronization without software jitter.
+            </p>
+
+            <h5 style="color:#c4b5fd; margin-top:20px;">📌 System Hardware Port Mapping:</h5>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="mapping-list">
+                     <div style="color: #94a3b8; font-weight:bold; border-bottom: 1px solid #334155; padding-bottom:5px; margin-bottom:10px;">CCD Input Drive Signals (PWM)</div>
+                     <div class="mapping-item"><span class="mapping-label">Clock 1:</span> <span class="mapping-value">PA8 (TIM1_CH1)</span></div>
+                     <div class="mapping-item"><span class="mapping-label">Clock 2:</span> <span class="mapping-value">PA9 (TIM1_CH2)</span></div>
+                     <div class="mapping-item"><span class="mapping-label">Reset Clock (Clock RS):</span> <span class="mapping-value">PA10 (TIM1_CH3)</span></div>
+                     <div class="mapping-item"><span class="mapping-label">Readout Gate (ROG):</span> <span class="mapping-value">PB12 (GPIO Output)</span></div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="mapping-list">
+                     <div style="color: #94a3b8; font-weight:bold; border-bottom: 1px solid #334155; padding-bottom:5px; margin-bottom:10px;">CCD Output Analog Channels (ADC)</div>
+                     <div class="mapping-item"><span class="mapping-label">RED Channel Input:</span> <span class="mapping-value">PA1 (ADC1_IN1)</span></div>
+                     <div class="mapping-item"><span class="mapping-label">GREEN Channel Input:</span> <span class="mapping-value">PA0 (ADC1_IN0)</span></div>
+                     <div class="mapping-item"><span class="mapping-label">BLUE Channel Input:</span> <span class="mapping-value">PA4 (ADC1_IN4)</span></div>
+                  </div>
+               </div>
+            </div>
+
+            <a href="Pin Name.pdf" class="btn-download-custom" target="_blank" style="margin-top: 15px;">
+               <i class="fas fa-map-marked-alt"></i> Download Port Mapping PDF
+            </a>
+
+            <div class="image-container-custom">
+               <img src="assets/img/My Projects/CCD/20S.jpg" alt="MATLAB Signal Simulation">
+               <div class="image-caption">Figure 6.1: Precision Waveform Analysis simulated via MATLAB</div>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 07</span>
+            <h3 class="section-title-custom"><i class="fas fa-exchange-alt"></i> Logic Level Translation & The MIC4427 MOSFET Driver</h3>
+            <p>
+               The STM32 microcontroller operates strictly on <strong>3.3V Logic</strong>, whereas the CCD requires a robust <strong>5V Logic</strong> input to function. Standard logic level shifters fail miserably here, as they cannot maintain the sharp rising and falling edge times required at 1MHz to 5MHz speeds.
+            </p>
+            <p>
+               The practical solution was implementing two <strong>MIC4427 Dual MOSFET Driver ICs</strong>. These chips can easily handle the 1200pF capacitance, delivering a massive 1.5A peak current to produce perfectly sharp, high-speed 5V square waves.
+            </p>
+
+            <a href="MIC4427.PDF" class="btn-download-custom" target="_blank" style="margin-bottom: 20px;">
+               <i class="far fa-file-pdf"></i> Download MIC4427 Datasheet
+            </a>
+
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/mic4427 pin out.jpg" alt="MIC4427 Pinout">
+                     <div class="image-caption">Figure 7.1: MIC4427 MOSFET Driver Pinout</div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/Application Circuit.jpg" alt="Application Circuit Diagram">
+                     <div class="image-caption">Figure 7.2: Final Application Circuit / Hardware Schematic</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 08</span>
+            <h3 class="section-title-custom"><i class="fas fa-charging-station"></i> Power Grid Decoupling Architecture</h3>
+            <p>
+               Rapidly charging and discharging a 1200pF load generates extreme voltage spikes and dips on the main 12V supply line. Since this directly corrupts the analog outputs of the CCD, implementing a localized <strong>Decoupling Capacitor Array</strong> is mandatory. I placed 0.1uF ceramic capacitors for high-frequency noise rejection alongside 10uF to 100uF tantalum capacitors for bulk energy storage, positioned as physically close to the power pins as possible.
+            </p>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 09</span>
+            <h3 class="section-title-custom"><i class="fas fa-microscope"></i> Laboratory Testing & Verification</h3>
+            <p>
+               Upon completing the hardware design, the system was thoroughly tested in the university laboratory using a digital oscilloscope to validate signal integrity and phase alignment.
+            </p>
+
+            <div class="image-container-custom">
+               <img src="assets/img/My Projects/CCD/WhatsApp Image 2026-01-05 at 2.41.01 AM (1).jpg" alt="Input signals verification through digital oscilloscope">
+               <div class="image-caption">Figure 9.1: Real-time validation - Input clock and phase signals generated by STM32F411CEU6 viewed via a Digital Oscilloscope</div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/WhatsApp Image 2025-12-29 at 6.54.53 PM (2).jpg" alt="Lab Power Supply Setup">
+                     <div class="image-caption">Figure 9.2: Laboratory Power Supply Configuration</div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/WhatsApp Image 2025-12-29 at 6.54.54 PM.jpg" alt="Oscilloscope Waves Validation">
+                     <div class="image-caption">Figure 9.3: Precision Waveforms generated by STM32 (Oscilloscope View)</div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/WhatsApp Image 2025-12-29 at 6.54.53 PM (1).jpg" alt="Green Color Detection Process">
+                     <div class="image-caption">Figure 9.4: Practical Sensor Test - Green Color Detection</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="edu-section">
+            <span class="step-badge">Step 10</span>
+            <h3 class="section-title-custom"><i class="fas fa-cogs"></i> STM32CubeIDE IOC Configuration</h3>
+            <p>
+               Properly configuring the microcontroller in STM32CubeIDE is the absolute foundation of this project. The <code>.ioc</code> (Device Configuration Tool) files visually map out the specific hardware parameters, Timer Prescalers, and Phase boundaries before generating the core C code. Ensuring the Clock Tree is pushed to 100MHz is vital for nanosecond timer resolution.
+            </p>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/ioc pin cofig.jpg" alt="IOC Pin Configuration">
+                     <div class="image-caption">Figure 10.1: STM32CubeIDE Pinout & Advanced Timer Mapping</div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="image-container-custom">
+                     <img src="assets/img/My Projects/CCD/ioc clk cofig.jpg" alt="IOC Clock Configuration">
+                     <div class="image-caption">Figure 10.2: Clock Tree Setup (Configured for maximum core speed)</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="edu-section" style="border: none;">
+            <span class="step-badge">Step 11</span>
+            <h3 class="section-title-custom"><i class="fas fa-code"></i> Source Firmware & Custom Project Files</h3>
+            <p>
+               For further study or reproduction of this project, you can download the complete STM32CubeIDE custom firmware source code (including the .ioc file). 
+            </p>
+            <a href="CCD_Signal_test.zip" class="btn-download-custom" download>
+               <i class="fas fa-file-archive"></i> Download STM32CubeIDE Project Firmware (.ZIP)
+            </a>
+         </div>
+
+         <div class="text-center" style="margin-top: 50px;">
+            <a href="blog_details.html" class="btn-download-custom" style="background: #1f2937; border: 1px solid #4b5563; padding: 15px 35px; border-radius: 30px; font-size:16px;">
+               <i class="fa fa-arrow-left"></i> Back to Projects
+            </a>
+         </div>
+
+      </div>
+   </main>
+
+   <footer>
+      <div class="footer-area">
+         <div class="container" style="padding: 30px 0;">
+            <div class="text-center">
+               <p style="color:#94a3b8; font-size: 14px;">© 2026 S M G A Sipkaduwa. All Rights Reserved.</p>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+   <script src="./assets/js/bootstrap.min.js"></script>
+   <script src="./assets/js/main.js"></script>
+</body>
+</html>

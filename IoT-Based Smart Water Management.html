@@ -1,0 +1,454 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Smart Water Management System - Portfolio</title>
+    <meta name="description" content="IoT based water leakage detection and management system">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+    
+    /* Content Blocks with new Hover Effect */
+    .content-block {
+        background: #ffffff;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        margin-bottom: 25px;
+        border-left: 6px solid #007bff;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .content-block:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    /* Image Stack */
+    .custom-img-stack {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 850px;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.4s ease;
+    }
+    .custom-img-stack:hover {
+        transform: scale(1.02);
+    }
+
+    /* Figure and Caption */
+    .custom-figure { margin: 0; text-align: center; }
+    .custom-figure figcaption { margin-top: 20px; font-size: 1.2em; font-weight: 600; color: #333; }
+
+    /* Custom Styles for Project Page */
+    body {
+        background-color: #fcfcfc;
+        color: #333;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden;
+    }
+    
+    /* Navigation Adjustment */
+    .header-area { box-shadow: 0 2px 10px rgba(0,0,0,0.1); background: #fff; }
+    .main-menu ul { display: flex; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
+    .main-menu ul li { margin-left: 30px; }
+    .main-menu ul li a { font-weight: 600; color: #333; text-decoration: none; padding: 20px 0; display: block; position: relative; }
+    .main-menu ul li a:hover { color: #007bff; }
+    
+    /* Sections & Blocks */
+    .section-padding { padding: 80px 0; }
+    
+    /* Algorithm Grid */
+    .algo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .algo-card {
+        background: linear-gradient(145deg, #ffffff, #f3f3f3); 
+        border: 1px solid #eee; padding: 25px; border-radius: 12px;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .algo-card:hover { 
+        transform: translateY(-8px); 
+        box-shadow: 0 15px 25px rgba(0,123,255,0.15); 
+        border-color: #007bff;
+    }
+    .algo-time { color: #007bff; font-weight: bold; font-size: 1.1em; margin-bottom: 10px; }
+    
+    /* Web Dashboard Images */
+    .dashboard-img-wrapper { text-align: center; overflow: hidden; border-radius: 12px; }
+    .dashboard-img {
+        width: 100%; height: auto; border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.4s ease;
+    }
+    .dashboard-img:hover { transform: scale(1.05); }
+    
+    /* Hardware Implementation Image Wrappers (Replaced Placeholders) */
+    .hardware-img-container {
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        background: #fff;
+    }
+    .hardware-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .hardware-img-container img:hover {
+        transform: scale(1.06);
+    }
+    .img-center { height: 350px; }
+    .img-series { height: 280px; }
+    
+    .clearfix::after { content: ""; clear: both; display: table; }
+
+    /* Highlight text */
+    .highlight-text { font-weight: 600; color: #d9534f; background: #ffebeb; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 5px;}
+    
+    /* Hardware List Decoration */
+    .hardware-list { list-style: none; padding: 0; }
+    .hardware-list li { 
+        padding: 12px 15px; 
+        border-bottom: 1px dashed #ddd; 
+        display: flex; align-items: center; 
+        transition: all 0.3s;
+        border-radius: 8px;
+    }
+    .hardware-list li:hover { background: #f8f9fa; padding-left: 25px; color: #007bff; }
+    .hardware-list li i { color: #28a745; margin-right: 15px; font-size: 1.2em; }
+
+    /* Blueprint Button with pulse effect */
+    .btn-blueprint-container { text-align: center; margin: 50px 0; }
+    .btn-blueprint {
+        display: inline-block;
+        background-color: #1e3a8a;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.1em;
+        font-weight: bold;
+        border: 2px dashed #93c5fd;
+        padding: 15px 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        text-decoration: none;
+        box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3);
+        transition: all 0.4s ease;
+        background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 15px 15px;
+        animation: pulseButton 2s infinite;
+    }
+    .btn-blueprint:hover { 
+        background-color: #1d4ed8; color: #fff; 
+        border: 2px solid #ffffff; transform: translateY(-5px); 
+        box-shadow: 0 15px 30px rgba(30, 58, 138, 0.4);
+        animation: none;
+    }
+
+    /* Page Animations */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseButton {
+        0% { box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(30, 58, 138, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(30, 58, 138, 0); }
+    }
+    
+    .animate-box {
+        animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    
+    </style>
+</head>
+
+<body>
+    <!-- Header Start -->
+    <header>
+        <div class="header-area header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-3 col-lg-3 col-md-4">
+                        <div class="logo">
+                            <a href="index.html" style="text-decoration: none;"><h4 style="font-weight: bold; color: #1e3a8a; margin: 0;">INTERNET OF THINGS PROJECT</h4></a>
+                        </div>
+                    </div>
+                    <!-- Navigation Menu -->
+                    <div class="col-xl-9 col-lg-9 col-md-8">
+                        <div class="main-menu d-none d-lg-block">
+                            <nav> 
+                                <ul id="navigation">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <!-- Changed link to blog_details.html -->
+                                    <li><a href="blog_details.html">Projects</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <main>
+        <!-- Hero Area -->
+        <div class="hero-container" style="background: linear-gradient(135deg, #f4f7f6 0%, #e0eaf5 100%); padding: 60px 0; text-align: center; overflow: hidden;">
+            <div class="container">
+                <div class="hero-content animate-box">
+                    <img src="assets/img/My Projects/IOT smart water managemant/Gemini_Generated_Image_q8mbbsq8mbbsq8mb.jpg" 
+                         alt="IoT Smart Water Project" 
+                         style="max-width: 80%; height: auto; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); margin-bottom: 30px; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                    
+                    <h1 style="color: #111; font-weight: 800; font-size: 3em; margin-bottom: 10px;">Smart Water Management System</h1>
+                    <p style="font-size: 1.2em; color: #555;">Open University SNT Building - IoT Solution</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <section class="section-padding">
+            <div class="container">
+                
+                <!-- Introduction & Problem Statement -->
+                <div class="row mb-5 animate-box delay-1">
+                    <div class="col-12">
+                        <div class="content-block">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7 col-md-12 mb-4 mb-lg-0">
+                                    <h2 class="mb-4">Project Overview</h2>
+                                    <p>This project was implemented at the <strong>Open University SNT Building</strong> to completely eliminate water wastage. Often, taps are left half-closed by users in a rush, or they break during operational hours. If left unnoticed, especially overnight, this causes massive water loss.</p>
+                                    <p>To solve this, I developed a system that divides the day into specific time periods to identify standard <strong>water usage patterns</strong>. If the system detects an override in these patterns (e.g., continuous flow beyond a threshold), it identifies it as a leak and automatically triggers a 12V Solenoid valve to shut off the water supply.</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12 text-center">
+                                    <div style="overflow: hidden; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                                        <img src="assets/img/My Projects/IOT smart water managemant/hard ware implementaion 03.JPG" 
+                                             alt="Project Setup" 
+                                             style="width: 100%; height: auto; object-fit: cover; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagrams Section -->
+                <div class="row mb-5 animate-box delay-2">
+                    <div class="col-12 mb-4">
+                        <div class="content-block">
+                            <figure class="custom-figure">
+                                <img src="assets/img/My Projects/IOT smart water managemant/BLOCK DIAGRAM.JPG" 
+                                     alt="System Block Diagram" class="custom-img-stack">
+                                <figcaption>Figure 1: System Block Diagram</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <div class="content-block">
+                            <figure class="custom-figure">
+                                <img src="assets/img/My Projects/IOT smart water managemant/FLOW CHART.JPG" 
+                                     alt="System Flow Chart" class="custom-img-stack">
+                                <figcaption>Figure 2: System Flow Chart</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Algorithm & Time Periods -->
+                <div class="row mb-5 animate-box delay-3">
+                    <div class="col-12">
+                        <h3 class="mb-4 text-center" style="font-weight: 700;">Smart Usage Pattern Algorithm</h3>
+                        <div class="algo-grid">
+                            <div class="algo-card">
+                                <div class="algo-time">07:00 AM - 10:00 AM</div>
+                                <p><strong>Status:</strong> High Usage (Morning)</p>
+                                <p><strong>Leak Threshold:</strong> &gt; 20 mins continuous flow.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Close Solenoid</p>
+                            </div>
+                            <div class="algo-card">
+                                <div class="algo-time">10:00 AM - 12:00 PM</div>
+                                <p><strong>Status:</strong> Low Usage (Working hours)</p>
+                                <p><strong>Leak Threshold:</strong> &gt; 10 mins continuous flow.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Close Solenoid</p>
+                            </div>
+                            <div class="algo-card">
+                                <div class="algo-time">12:00 PM - 02:00 PM</div>
+                                <p><strong>Status:</strong> High Usage (Lunch Time)</p>
+                                <p><strong>Leak Threshold:</strong> &gt; 20 mins continuous flow.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Close Solenoid</p>
+                            </div>
+                            <div class="algo-card">
+                                <div class="algo-time">02:00 PM - 03:30 PM</div>
+                                <p><strong>Status:</strong> Low Usage (Working hours)</p>
+                                <p><strong>Leak Threshold:</strong> &gt; 10 mins continuous flow.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Close Solenoid</p>
+                            </div>
+                            <div class="algo-card">
+                                <div class="algo-time">03:30 PM - 05:00 PM</div>
+                                <p><strong>Status:</strong> High Usage (Leaving time)</p>
+                                <p><strong>Leak Threshold:</strong> &gt; 30 mins continuous flow.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Close Solenoid</p>
+                            </div>
+                            <div class="algo-card">
+                                <div class="algo-time">05:00 PM - 08:00 PM</div>
+                                <p><strong>Status:</strong> Very Low Usage</p>
+                                <p><strong>Leak Threshold:</strong> &gt; 10 mins continuous flow.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Close Solenoid</p>
+                            </div>
+                            <div class="algo-card">
+                                <div class="algo-time">08:00 PM - 07:00 AM</div>
+                                <p><strong>Status:</strong> Unoccupied</p>
+                                <p><strong>Leak Threshold:</strong> ANY minor flow detected instantly.</p>
+                                <p class="highlight-text"><i class="fas fa-lock"></i> Action: Immediate Solenoid Close</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IoT Web Dashboard Features -->
+                <div class="row mb-5 animate-box delay-1">
+                    <div class="col-12">
+                        <div class="content-block" style="border-left-color: #28a745;">
+                            <h3 class="mb-4">IoT Integration & Web Dashboard</h3>
+                            <p>The core of this system is the <strong>ESP32 Microcontroller</strong>, utilizing its built-in WiFi to seamlessly connect to a custom Web Dashboard. This provides real-time monitoring and analytics:</p>
+                            <ul>
+                                <li>Data is uploaded to the dashboard every <strong>2 minutes</strong>.</li>
+                                <li>Displays the <strong>Real-time current water flow rate</strong>.</li>
+                                <li>Upon detecting a leak, it locks the flow rate data. Until the <strong>Reset Button</strong> is pressed, the UI calculates and displays exactly <strong>how much water was saved</strong> versus what would have been wasted.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-4 mb-4">
+                                <div class="dashboard-img-wrapper">
+                                    <img src="assets/img/My Projects/IOT smart water managemant/web dash board 01.JPG" 
+                                         alt="Web Dashboard Real-time Flow" class="dashboard-img">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="dashboard-img-wrapper">
+                                    <img src="assets/img/My Projects/IOT smart water managemant/web dash board 02.JPG" 
+                                         alt="Web Dashboard Leak Detected" class="dashboard-img">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="dashboard-img-wrapper">
+                                    <img src="assets/img/My Projects/IOT smart water managemant/web dash baord03.JPG" 
+                                         alt="Web Dashboard Water Saved Analytics" class="dashboard-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hardware Setup & Schematic (Added schematic image here) -->
+                <div class="row mb-5 animate-box delay-2">
+                    <div class="col-lg-5">
+                        <h3 class="mb-4">Hardware Components</h3>
+                        <ul class="hardware-list">
+                            <li><i class="fas fa-microchip"></i> ESP32 Main Controller</li>
+                            <li><i class="fas fa-tint"></i> YF-S201 Water Flow Sensor</li>
+                            <li><i class="far fa-clock"></i> DS3231 Precision RTC Module</li>
+                            <li><i class="fas fa-toggle-off"></i> 12V Solenoid Valve</li>
+                            <li><i class="fas fa-desktop"></i> LCD Display with I2C</li>
+                            <li><i class="fas fa-plug"></i> Relay Module</li>
+                            <li><i class="fas fa-volume-up"></i> Buzzer & LED Indicators</li>
+                            <li><i class="fas fa-power-off"></i> Hardware Reset Button</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-7">
+                        <!-- Replaced Schematic Placeholder with actual image -->
+                        <div class="hardware-img-container img-center">
+                            <img src="assets/img/My Projects/IOT smart water managemant/schematic.JPG" alt="Schematic Diagram">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component Setup & Hardware Implementation Images (Added requested images here) -->
+                <div class="row mb-5 animate-box delay-3">
+                    <div class="col-12 text-center mb-4">
+                        <h3 style="font-weight: 700;">Implementation Setup</h3>
+                    </div>
+                    
+                    <div class="col-md-12 mb-4">
+                        <!-- Replaced Complete Components Setup Placeholder with actual image -->
+                        <div class="hardware-img-container" style="height: 400px;">
+                            <img src="assets/img/My Projects/IOT smart water managemant/water flow sensor.JPG" alt="Complete Components Setup">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <!-- Replaced Implementation Series Image 1 -->
+                        <div class="hardware-img-container img-series">
+                            <img src="assets/img/My Projects/IOT smart water managemant/hard ware implementaion 01.JPG" alt="Hardware Implementation 1">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <!-- Replaced Implementation Series Image 2 -->
+                        <div class="hardware-img-container img-series">
+                            <img src="assets/img/My Projects/IOT smart water managemant/hard ware implementaion 05.JPG" alt="Hardware Implementation 2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Implementations -->
+                <div class="row mb-4 animate-box delay-1">
+                    <div class="col-12">
+                        <div class="content-block" style="border-left-color: #6f42c1; text-align: center; background: linear-gradient(to right, #ffffff, #fdfbfe);">
+                            <h3 class="mb-3"><i class="fas fa-rocket" style="color:#6f42c1; margin-right: 10px;"></i>Future Implementation</h3>
+                            <p style="font-size: 1.1em; color: #555;">Transitioning from a standalone setup to a <strong>Master-Slave architecture</strong>. A single central unit will coordinate multiple independent sub-unit modules installed across different locations, executing comprehensive water management from one central dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blueprint Action Button (Changed PDF link) -->
+                <div class="row animate-box delay-2">
+                    <div class="col-12 btn-blueprint-container">
+                        <a href="Water Management_Project_Final Report_.pdf" target="_blank" class="btn-blueprint">
+                            <i class="fas fa-file-pdf" style="margin-right: 8px;"></i> View Full Project Report
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer>
+        <div class="footer-area">
+            <div class="container">
+               <div class="footer-top footer-padding text-center" style="padding: 40px 0; border-top: 1px solid #eaeaea; margin-top: 20px;">
+                    <p style="color: #777;">&copy; <script>document.write(new Date().getFullYear());</script> S M G A SIPKADUWA, All rights reserved.</p>
+               </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS here -->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5G Spectrum Refarming & Strategic Evolution | Sri Lanka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        :root { --primary: #007bff; --dark: #1a1a1a; --light: #f4f4f4; }
+        body { background-color: #ffffff; color: #333; font-family: 'Segoe UI', sans-serif; line-height: 1.8; }
+        
+        /* Electronic Data Flow Animation */
+        .bus-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; opacity: 0.15; }
+        .line { position: absolute; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, #007bff, transparent); animation: flow 4s linear infinite; }
+        @keyframes flow { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+        .navbar { background: white; border-bottom: 2px solid #ddd; }
+        .nav-btn { margin-left: 15px; font-weight: bold; color: #333; text-decoration: none; }
+        
+        .hero { padding: 80px 20px; background: #eee; position: relative; }
+        .hero-bg { position: absolute; top:0; left:0; width:100%; height:100%; background-image: url('assets/img/My Projects/5G/Capture.jpg'); background-size: cover; background-position: center; opacity: 0.2; }
+        
+        .content-box { max-width: 900px; margin: 40px auto; padding: 40px; background: white; border: 1px solid #eee; }
+        
+        /* Prevent Image Cropping */
+        .img-fluid-custom { width: 100%; height: auto; object-fit: contain; border: 1px solid #ddd; padding: 5px; }
+        
+        h2 { border-bottom: 3px solid var(--primary); padding-bottom: 10px; margin-top: 40px; }
+        .tech-table { width: 100%; margin: 20px 0; border-collapse: collapse; }
+        .tech-table th, .tech-table td { border: 1px solid #ccc; padding: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="bus-animation">
+        <div class="line" style="left: 15%; animation-duration: 3s;"></div>
+        <div class="line" style="left: 45%; animation-duration: 5s;"></div>
+        <div class="line" style="left: 75%; animation-duration: 4s;"></div>
+    </div>
+
+    <nav class="navbar sticky-top px-5">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>SL 5G RESEARCH </b></a>
+            <div class="d-flex">
+                <a class="nav-btn" href="index.html">HOME</a>
+                <a class="nav-btn" href="about.html">ABOUT</a>
+                <a class="nav-btn" href="blog_details.html">PROJETs</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <div class="hero-bg"></div>
+        <h1 style="position:relative;">Strategic Spectrum Refarming for 5G Deployment</h1>
+        <p style="position:relative;">A Comprehensive Technical Framework for National Digital Transformation</p>
+    </div>
+
+    <div class="container my-5">
+        
+        <section class="content-box">
+            <h2>1. Executive Summary & Research Objectives</h2>
+            <p>This research evaluates the critical transition from legacy mobile networks (2G/3G/CDMA) to the 5G New Radio (NR) ecosystem. As Sri Lanka transitions toward a digital economy, spectral efficiency is the bottleneck. The objective is to provide a technical roadmap for operators to optimize the current frequency assignments.</p>
+            <ul>
+                <li><strong>Spectrum Optimization:</strong> Repurposing the 850MHz (CDMA) and 2100MHz (3G) bands for 5G Sub-6GHz coverage and capacity.</li>
+                <li><strong>Infrastructure Maturity:</strong> Transitioning from 4G-Non-Standalone (NSA) to 5G-Standalone (SA) architecture.</li>
+                <li><strong>Technological Deployment:</strong> Utilizing Massive MIMO, beamforming, and small-cell densities.</li>
+                <li><strong>Regulatory Alignment:</strong> Harmonizing with TRCSL NFAT and ITU Region 3 standards.</li>
+            </ul>
+        </section>
+
+        <section class="content-box">
+            <h2>2. Spectrum Refarming: The Technical Logic</h2>
+            <p>Refarming is not merely switching technology; it is a complex management of interference and user migration. By phasing out CDMA and 3G, we liberate contiguous bandwidth blocks essential for high-throughput 5G.</p>
+           <p>
+    Spectrum refarming in the Sri Lankan context is a strategic necessity to overcome spectral scarcity and optimize the migration from legacy 2G/3G networks to the 5G New Radio (NR) ecosystem. In Sri Lanka, major operators like <strong>Dialog Axiata</strong> and <strong>SLT-Mobitel</strong> have been instrumental in this transition. 
+</p>
+<p>
+    The refarming logic follows a strict "Sunset & Migrate" policy:
+</p>
+<ul>
+    <li><strong>Spectral Efficiency & Technology Neutrality:</strong> Operators utilize TRCSL's technology-neutral licenses to convert bands previously allocated for 3G (like 2100MHz) into 5G TDD-NR. By reducing the carrier bandwidth of legacy 3G services, they free up contiguous blocks essential for 5G NR, which requires wider channels (up to 100MHz) to deliver multi-gigabit throughput.</li>
+    <li><strong>Operator Strategy (Dialog & Mobitel):</strong> Dialog and Mobitel have initiated phased decommissioning of CDMA and 3G networks. This is done via <em>Dynamic Spectrum Sharing (DSS)</em>, where 4G LTE and 5G NR frequencies are shared dynamically in real-time. This ensures that users on older devices are not disconnected while the network capacity is repurposed for 5G.</li>
+    <li><strong>Interference Management & Guard Bands:</strong> A critical technical challenge is managing adjacent channel interference. Refarming requires precision filtering and the optimization of guard bands to prevent signal leakage between the refarmed 5G bands and existing 4G LTE deployments.</li>
+    <li><strong>User Migration Roadmap:</strong> Successful refarming relies on the aggressive promotion of 4G/5G enabled VoLTE devices. By incentivizing the population to move away from legacy handsets, operators reduce the signaling overhead required to maintain 3G/CDMA networks, effectively shifting that energy consumption and bandwidth to high-efficiency 5G infrastructure.</li>
+</ul>
+<p>
+    This evolution is not just about speed; it is about maximizing the <strong>bits-per-hertz</strong> efficiency of every megahertz of spectrum assigned to the operators.
+</p>
+		   <table class="tech-table">
+                <tr style="background:#f0f0f0;"><th>Band</th><th>Allocation</th><th>Transition Strategy</th></tr>
+                <tr><td>850 MHz</td><td>CDMA Legacy</td><td>Decommission CDMA; Shift to 5G Low-band for rural reach.</td></tr>
+                <tr><td>2100 MHz</td><td>3G/HSPA</td><td>Sunset 3G; Convert to 5G TDD-NR for capacity boost.</td></tr>
+                <tr><td>3.5 GHz</td><td>5G C-Band</td><td>New Assignment for urban hotspots (100MHz+ channels).</td></tr>
+            </table>
+            
+            <p><strong>Reference Materials:</strong></p>
+<a href="FINALRadioFrequencySL.pdf" target="_blank" class="btn btn-outline-primary m-1">TRCSL NFAT PDF</a>
+    <a href="Road Map.pdf" target="_blank" class="btn btn-outline-primary m-1">Frequency Road Map</a>
+    <a href="Math Lab  Analize.pdf" target="_blank" class="btn btn-outline-primary m-1">MathLab Analysis</a>
+        </section>
+
+        <section class="content-box">
+            <h2>3. Quantitative Analysis (MATLAB Simulations)</h2>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img src="assets/img/My Projects/5G/Coverage & Path Loss Comparison.jpg" class="img-fluid-custom">
+                    <p><em>Figure 1: Path Loss vs. Propagation Distance. Analysis shows 5G Sub-GHz (700-850MHz) viability for wide-area coverage.</em></p>
+                </div>
+                <div class="col-md-12 text-center mt-4">
+                    <img src="assets/img/My Projects/5G/Network Capacity vs Bandwidth (Shannon Capacity Analysis).jpg" class="img-fluid-custom" alt="Shannon Capacity Analysis">
+                    <p><em>Figure 2: Shannon Capacity Analysis. Demonstrating throughput gain from 15MHz 3G blocks to 100MHz 5G NR channels.</em></p>
+                </div>
+                <div class="col-md-12 text-center mt-4">
+                    <img src="assets/img/My Projects/5G/5G Massive MIMO Beamforming.jpg" class="img-fluid-custom">
+                    <p><em>Figure 3: 64T64R Massive MIMO Beamforming. This simulation demonstrates how spatial multiplexing isolates user interference.</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-box">
+            <h2>4. Economic & Industrial Impact</h2>
+            <div class="text-center mb-4">
+                <img src="assets/img/My Projects/5G/Infrastructure Sharing in sri lanka.jpg" class="img-fluid-custom">
+                <p><em>Figure 4: The 5G Infrastructure Sharing Model. Integrating Fiber-to-the-Antenna (FTTA) in local contexts.</em></p>
+            </div>
+            
+            <p>5G will serve as the backbone for national economic evolution. Key verticals include:</p>
+            <ul>
+                <li><strong>Dark Manufacturing (Industry 4.0):</strong> Replacing manual assembly lines with autonomous robotic arms coordinated via 5G Ultra-Reliable Low-Latency Communication (URLLC).</li>
+                <li><strong>Telemedicine:</strong> Enabling real-time diagnostic imaging and remote robotic surgery, bridging the gap between rural patients and metropolitan specialists.</li>
+                <li><strong>Autonomous Transport:</strong> Vehicular-to-Everything (V2X) communication to optimize traffic flow in Colombo and major urban centers.</li>
+                <li><strong>Smart Energy Grids (IoT):</strong> Massively scalable IoT connectivity to optimize national power distribution.</li>
+            </ul>
+        </section>
+
+        <section class="content-box">
+            <h2>5. Implementation Protocols</h2>
+            <p>Operators must adhere to a phased transition:</p>
+            <ol>
+                <li><strong>Device Migration:</strong> Incentivizing customers to swap 3G devices for 4G/5G VoLTE capable terminals.</li>
+                <li><strong>Dynamic Spectrum Sharing (DSS):</strong> Temporarily allowing 4G and 5G to coexist on the same band via software management to minimize disruption during the transition.</li>
+                <li><strong>Backhaul Hardening:</strong> Converting legacy microwave links to fiber-optic backhaul to handle the 10Gbps+ throughput requirement of the 5G Core.</li>
+            </ol>
+        </section>
+		
+		<div class="content-box">
+    <h3>References</h3>
+    <div class="d-flex flex-wrap gap-2">
+        <a href="https://www.trc.gov.lk/spectrum/pages_e.php?id=140" target="_blank" class="btn btn-outline-primary m-1">TRCSL Spectrum Policy</a>
+        <a href="https://www.itu.int/itu-d/sites/asiapacific/" target="_blank" class="btn btn-outline-primary m-1">ITU Asia-Pacific Initiatives</a>
+    </div>
+</div>
+
+        <footer class="text-center mt-5 py-5 border-top">
+            <h3 class="text-muted">Research Under Working - Update Soon</h3>
+            <p>Continuous monitoring of TRCSL regulatory updates and global 3GPP release standards.</p>
+			<div class="text-center">
+               <p>© 2026 S M G A Sipkaduwa. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

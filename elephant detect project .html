@@ -1,0 +1,375 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>AI Thermal Elephant Detection System - Portfolio</title>
+    <meta name="description" content="Railway Infrastructure Safety System using Thermal Imaging and ML">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    
+    <style>
+    /* -----------------------------
+       Jungle Tech Color Palette
+       ----------------------------- */
+    :root {
+        --jungle-dark: #0b2516;
+        --jungle-main: #143d28;
+        --orange-accent: #e65c00;
+        --orange-light: #fff0e6;
+        --bg-light: #f4f7f5;
+        --text-dark: #2c3e50;
+        --white: #ffffff;
+    }
+
+    body {
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden;
+    }
+    
+    /* Navigation Adjustments */
+    .header-area { box-shadow: 0 2px 15px rgba(0,0,0,0.05); background: var(--white); padding: 15px 0;}
+    .main-menu ul { display: flex; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
+    .main-menu ul li { margin-left: 30px; }
+    .main-menu ul li a { font-weight: 600; color: var(--text-dark); text-decoration: none; padding: 10px 0; display: block; }
+    .main-menu ul li a:hover { color: var(--orange-accent); }
+    
+    .section-padding { padding: 70px 0; }
+    
+    /* Premium Content Cards */
+    .tech-card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(20, 61, 40, 0.04);
+        margin-bottom: 30px;
+        border-left: 6px solid var(--jungle-main);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        height: 100%;
+    }
+    .tech-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(20, 61, 40, 0.1);
+    }
+    
+    .tech-card.highlight-card {
+        border-left-color: var(--orange-accent);
+    }
+
+    h2, h3, h4 { color: var(--jungle-dark); font-weight: 700; margin-bottom: 20px; }
+    p { line-height: 1.75; color: #5a6c7d; font-size: 1.05em; text-align: justify; }
+
+    /* Grid Layout for General Gallery - Zero Cropping Config */
+    .media-box {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        background: var(--white);
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #e1e8ed;
+        transition: transform 0.3s ease;
+    }
+    .media-box:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(20, 61, 40, 0.12);
+    }
+    .media-box img {
+        width: 100%;
+        height: auto;
+        max-height: 480px;
+        object-fit: contain; /* Enforces full frame scaling, absolutely no text/image cutoffs */
+        display: block;
+        margin: 0 auto;
+    }
+    
+    /* Specialized for smaller grid items */
+    .media-box.small-grid img {
+        max-height: 250px;
+    }
+
+    .master-caption {
+        text-align: center; font-weight: 700; color: var(--jungle-main); margin-top: 15px; margin-bottom: 30px; font-size: 1.2em;
+        letter-spacing: 0.5px;
+    }
+
+    /* Embedded Highlight Badges */
+    .spec-tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px;}
+    .spec-tags li { 
+        background: var(--orange-light);
+        color: var(--orange-accent);
+        padding: 8px 18px; 
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.9em;
+        display: flex; align-items: center;
+        border: 1px solid rgba(230, 92, 0, 0.15);
+    }
+    .spec-tags li i { margin-right: 8px; }
+
+    /* Immersive Hero Header Container with Transparent AI Image */
+    .hero-canvas {
+        position: relative;
+        background-image: url('assets/img/My Projects/elephant detect/Gemini_Generated_Image_rc236erc236erc23.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 160px 0;
+        text-align: center;
+        z-index: 1;
+    }
+    .hero-canvas::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(11, 37, 22, 0.82); /* Deep Jungle Green Layer for contrast */
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    /* Professional CSS Animations */
+    @keyframes surfaceFadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes focalZoom { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    
+    .anim-fade-up { animation: surfaceFadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
+    .anim-zoom { animation: focalZoom 1s cubic-bezier(0.25, 1, 0.5, 1) both; }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.3s; }
+    .stagger-3 { animation-delay: 0.5s; }
+    .stagger-4 { animation-delay: 0.7s; }
+    
+    footer { background: var(--white); border-top: 1px solid #e1e8ed; padding: 30px 0; text-align: center; margin-top: 40px;}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-area header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <div class="logo">
+                            <h4 style="font-weight: bold; color: var(--jungle-dark); margin: 0; cursor: default; letter-spacing: 1px;">WILDLIFE AVOIDANCE SYSTEM</h4>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8">
+                        <div class="main-menu d-none d-lg-block">
+                            <nav> 
+                                <ul id="navigation">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="blog_details.html">Projects</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="hero-canvas">
+            <div class="container">
+                <div class="hero-text anim-zoom stagger-1">
+                    <div style="display: inline-block; padding: 14px 22px; background: rgba(230, 92, 0, 0.2); border: 1px solid var(--orange-accent); border-radius: 4px; margin-bottom: 25px;">
+                        <span style="color: #ff944d; font-weight: 700; letter-spacing: 2px; font-size: 0.9em;">NATIONAL DEFENSE & INFRASTRUCTURE PROJECT</span>
+                    </div>
+                    <h1 style="color: var(--white); font-weight: 800; font-size: 3.2em; margin-bottom: 15px;">AI-Powered Thermal Locomotive Elephant Detection System</h1>
+                    <p style="font-size: 1.25em; color: #a3c2b2; font-weight: 500; text-align: center; max-width: 800px; margin: 0 auto;">Computer Vision-Driven Early Warning Matrix Designed for Sri Lanka Railways</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="section-padding">
+            <div class="container">
+                
+                <div class="row mb-4 anim-fade-up stagger-1">
+                    <div class="col-12">
+                        <div class="tech-card highlight-card">
+                            <h2><i class="fas fa-university"></i> National Mission & Institutional Origins</h2>
+                            <p>This critically vital national infrastructure asset was commissioned by the <strong>Arthur C. Clarke Institute for Modern Technologies (ACCIMT)</strong> upon direct operational directives and institutional requests from the <strong>Department of Sri Lanka Railways</strong> and its oversight Ministry. The project addresses a pressing crisis along the intense Colombo-Batticaloa transit corridor: catastrophic collisions involving the localized "Meen Gaya" express train and wild elephants roaming migration tracks.</p>
+                            <p>These destructive collisions consistently transpire during late-night schedules, disproportionately impacting the Class S13 Diesel Multiple Unit (DMU) power sets. Dense midnight fog and absolute wilderness darkness severely limit locomotive operators' visual ranges, rendering giant obstructions invisible until physical impact is unavoidable. This resulting crisis frequently leads to fatal wildlife loss, severe destruction of costly locomotive engines and commuter cabins, operator casualties, and structural destruction of the regional rail tracks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-lg-7 mb-4 mb-lg-0 anim-fade-up stagger-2">
+                        <div class="tech-card">
+                            <h3><i class="fas fa-eye"></i> Long-Range Thermal Vision & AI Integration</h3>
+                            <p>To overcome absolute darkness and blinding night fog, the system integrates a high-performance military-grade **Thermal Imaging Camera** boasting an effective forward scanning threshold of **up to 1 Kilometer**. Thermal vision bypasses atmospheric interference completely, affording locomotive operators the vital stopping distance and reaction time required to decelerate heavy compositions safely.</p>
+                            <p>To convert raw infrared video telemetry into actionable data, advanced **Computer Vision and Machine Learning (ML) techniques** were utilized. **YOLO (You Only Look Once)** object detection models were customized and trained specifically to identify multi-angle elephant profiles instantly within heavy foliage or open tracks, suppressing false positives under demanding field conditions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 anim-zoom stagger-3">
+                        <div class="media-box" style="height: 100%; display: flex; align-items: center; justify-content: center; background: #fff;">
+                            <img src="assets/img/My Projects/elephant detect/thermal cam.jpg" alt="Thermal Camera Unit">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-1">
+                    <div class="col-12">
+                        <div class="tech-card" style="border-left: none; border-top: 6px solid var(--orange-accent);">
+                            <h3 class="text-center mb-4"><i class="fas fa-microchip"></i> AI Object Detection Output (Thermal Vision)</h3>
+                            <p class="text-center mb-4">Real-time infrared capturing crossed with custom-trained YOLO datasets to actively bound and identify targets in zero-visibility environments.</p>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/elephant detect/Capture.jpg" alt="Thermal Detection 1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/elephant detect/Capture_02.jpg" alt="Thermal Detection 2">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/elephant detect/Capture_01.jpg" alt="Thermal Detection 3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="master-caption"><i class="fas fa-crosshairs"></i> Thermal Camera Detection & AI Bounding Box Analysis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 anim-fade-up stagger-2">
+                    <div class="col-12">
+                        <div class="tech-card">
+                            <h3><i class="fas fa-tools"></i> Prototyping & ACCIMT Hardware R&D</h3>
+                            <p>During my professional tenure as a research engineering contributor within the **Communication Division at ACCIMT**, under the direct mentorship and guidance of Project Lead & Research Engineer <strong>Mr. Jayakamal (OUSL)</strong>, we built and deployed the operational system prototype. Core tasks focused on raw telemetry collection and rugged field deployment infrastructure development.</p>
+                            <p>Direct locomotive mounting of sensitive thermal equipment is impossible due to harsh environment exposure, heavy rain, and jarring mechanical vibrations capable of destroying delicate sensors. To counter this, we designed an armored environmental protective housing containing an integrated stabilization **Gimbal** assembly and an automated protective shutter mechanism.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 justify-content-center anim-fade-up stagger-3">
+                    <div class="col-12 text-center">
+                        <h3 class="mb-4"><i class="fas fa-cogs"></i> Electro-Mechanical Hardware & Prototype Assembly</h3>
+                        <p class="text-center max-width-700 mb-4">The industrial execution of the automated protective closure box, built utilizing CNC-milled systems, precise stepper motor drives, and robust mechanical arm linkages to automate shelter deployments during inclement weather.</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.36 PM.jpg" alt="Assembly 1"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.37 PM.jpg" alt="Assembly 2"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.14 PM.jpg" alt="Assembly 3"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.22 PM.jpg" alt="Assembly 4"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.13 PM.jpg" alt="Assembly 5"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.11 PM.jpg" alt="Assembly 6"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.05 PM.jpg" alt="Assembly 7"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.12 PM.jpg" alt="Assembly 8"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-4">
+                                <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.15.49 PM.jpg" alt="Assembly 9"></div>
+                            </div>
+                        </div>
+                        <div class="master-caption"><i class="fas fa-wrench"></i> Hardware Implementation Details and Protective Chassis Assembly</div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-1">
+                    <div class="col-lg-7">
+                        <div class="tech-card">
+                            <h3><i class="fas fa-subway"></i> Locomotive Integration & Field Telemetry</h3>
+                            <p>An on-board electronic **Rain Sensor** actively monitors ambient moisture levels to trigger the automated closure assembly during heavy rain. The complete internal payload—including the stepper motor driver modules, core control circuits, thermal sensor core, and robotic gimbal stabilization units—is shielded inside the rugged environmental chassis.</p>
+                            <p>Heavy-duty data links and power routing assemblies feed directly from the external chassis into the internal pilot cabin. To ensure seamless operation, our power regulation matrix directly adapts the locomotive engine's native **110V DC traction supply voltage** down to logic-level requirements.</p>
+                            <ul class="spec-tags mt-4">
+                                <li><i class="fas fa-bolt"></i> 110V DC Train Input</li>
+                                <li><i class="fas fa-cloud-showers-heavy"></i> Automated Rain Sensing</li>
+                                <li><i class="fas fa-shield-alt"></i> Heavy-Duty CNC Armor</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="media-box" style="margin-top: 15px;">
+                            <img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.17.16 PM.jpg" alt="Locomotive Field Run Deployment">
+                        </div>
+                        <div class="media-caption" style="color: var(--jungle-dark);">Locomotive Interface and Module Mounting Phase</div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-2">
+                    <div class="col-12">
+                        <div class="tech-card" style="border-left: none; border-top: 6px solid var(--jungle-main);">
+                            <h3 class="text-center mb-4"><i class="fas fa-train"></i> Field Testing on the S13 Night Mail Train</h3>
+                            <p class="text-center mb-4">We secured rare operational clearance to execute live field engineering tests directly within the primary driver cab of active S13 Night Mail Trains, gathering high-resolution imagery and vital telemetry across multiple high-speed nighttime runs to reinforce our custom YOLO AI model matrices.</p>
+                            
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.16.59 PM.jpg" alt="Train Journey 1"></div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.16.41 PM.jpg" alt="Train Journey 2"></div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.38 PM.jpg" alt="Train Journey 3"></div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <div class="media-box small-grid"><img src="assets/img/My Projects/elephant detect/WhatsApp Image 2026-07-06 at 8.18.41 PM.jpeg" alt="Train Journey 4"></div>
+                                </div>
+                            </div>
+                            <div class="master-caption"><i class="fas fa-route"></i> Live Cab Testing & Real-Time Signal Capture on the Active Rail System</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 anim-fade-up stagger-1">
+                        <div class="tech-card" style="border-left-color: #d9534f;">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Current System Boundaries</h3>
+                            <p>Despite exceptional structural performance, the fixed axial positioning of the optical chassis restricts effective scanning angles when traversing tight or wide-radius railway curves. To safeguard industrial intellectual property and align with strict **ACCIMT institutional rules and confidentiality regulations**, advanced structural schema and specific internal circuit metrics are strategically omitted from this documentation.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 anim-fade-up stagger-1">
+                        <div class="tech-card" style="border-left-color: #5cb85c;">
+                            <h3><i class="fas fa-check-circle"></i> Deployment Success</h3>
+                            <p>Developed with extreme urgency over a rapid, intense **4-month timeline** to satisfy critical national safety concerns, this system successfully transitioned from R&D into functional service. The Department of Sri Lanka Railways currently utilizes the platform to safeguard equipment and preserve wildlife along high-risk migration sectors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row anim-fade-up stagger-2">
+                    <div class="col-12">
+                        <div class="tech-card" style="background: linear-gradient(135deg, var(--jungle-dark), var(--jungle-main)); color: white; border: none;">
+                            <h3 style="color: white;"><i class="fas fa-radar"></i> Future Horizons: Integrated Radar Matrix</h3>
+                            <p style="color: #cce0d5;">To expand situational awareness beyond standard optical paths, active long-term research is underway at ACCIMT to develop and integrate an auxiliary **Radar Detection Layer**. Adding radar will enable the platform to map three-dimensional obstruction spaces surrounding the train track simultaneously. While processing radar data alongside thermal imaging requires deep processing iterations, this layer is actively progressing through experimental laboratory testing phases.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="color: #aaa; margin: 0; font-size: 0.9em;">&copy; <script>document.write(new Date().getFullYear());</script> S M G A SIPKADUWA | Advanced Aerospace & Telecommunication Engineering . All institutional data rights reserved under ACCIMT.</p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+</body>
+</html>

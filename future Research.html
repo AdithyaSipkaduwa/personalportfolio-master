@@ -1,0 +1,226 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>S M G A Sipkaduwa | Engineering Portfolio</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/animate.min.css">
+   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+
+   <style>
+      /* ව්‍යාපෘති කාඩ්පත් සඳහා විශේෂ හැඩගැන්වීම් */
+      .project-card {
+         background: #fff;
+         border-radius: 12px;
+         overflow: hidden;
+         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+         transition: all 0.3s ease-in-out;
+         margin-bottom: 30px;
+         border: 1px solid #eee;
+         display: flex;
+         flex-direction: column;
+         height: 100%;
+      }
+      .project-card:hover {
+         transform: translateY(-8px);
+         box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      }
+      .project-img-container {
+         position: relative;
+         overflow: hidden;
+         height: 230px; /* Box එකේ උස ප්‍රමාණය */
+         background: #f8f9fa;
+         padding: 0; /* සියලුම පැතිවලින් පෑඩින් ඉවත් කර රූපය කෙළවරටම ගෙන යාම */
+      }
+      .project-img-container img {
+         width: 100%; /* Box එකේ පළලටම හරියන්න */
+         height: 100%; /* Box එකේ උසටම හරියන්න */
+         object-fit: cover; /* රූපය Box එක ඇතුළේ දෙපැත්ත කැත නොවී සම්පූර්ණයෙන්ම Fit කරවීම */
+         transition: transform 0.5s ease;
+      }
+      .project-card:hover .project-img-container img {
+         transform: scale(1.05); /* Hover කරද්දී රූපය සූම් වන ලස්සන ඉෆෙක්ට් එකක් */
+      }
+      .project-body {
+         padding: 25px;
+         flex-grow: 1;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+      }
+      .project-tag {
+         font-size: 11px;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         color: #ff3d1c;
+         font-weight: 700;
+         margin-bottom: 8px;
+         display: inline-block;
+      }
+      .project-title {
+         font-size: 19px;
+         font-weight: 800;
+         color: #222;
+         line-height: 1.4;
+         margin-bottom: 12px;
+      }
+      .project-text {
+         font-size: 14px;
+         color: #666;
+         line-height: 1.6;
+         margin-bottom: 20px;
+      }
+      .btn-view-project {
+         background: #ff3d1c;
+         color: #fff !important;
+         text-align: center;
+         padding: 10px 20px;
+         border-radius: 6px;
+         font-size: 14px;
+         font-weight: 600;
+         text-decoration: none;
+         transition: 0.3s;
+         display: block;
+         margin-top: auto;
+      }
+      .btn-view-project:hover {
+         background: #222;
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <div class="header-area">
+         <div class="main-header header-sticky">
+            <div class="container-fluid">
+               <div class="row align-items-center">
+                  <div class="col-xl-2 col-lg-2 col-md-1">
+                     <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                     </div>
+                  </div>
+                  <div class="col-xl-10 col-lg-10 col-md-10">
+                     <div class="menu-main d-flex align-items-center justify-content-end">
+                        <div class="main-menu f-right d-none d-lg-block">
+                           <nav> 
+                              <ul id="navigation">
+                                 <li><a href="index.html">Home</a></li>
+                                 <li><a href="about.html">About</a></li>
+                                 <li><a href="blog_details.html" style="color: #ff3d1c;">Projects</a></li>
+                                 <li><a href="contact.html">Contact</a></li>
+                              </ul>
+                           </nav>
+                        </div>
+                     </div>
+                  </div>   
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <main>
+      <div class="slider-area">
+         <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-12">
+                     <div class="hero-cap">
+                        <h2>Engineering Future Projects</h2>
+                        <nav aria-label="breadcrumb">
+                           <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                              <li class="breadcrumb-item"><a href="#">Projects</a></li> 
+                           </ol>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <section class="blog_area section-padding">
+         <div class="container">
+            <div class="row">
+               
+               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                  <div class="project-card">
+                     <div class="project-img-container">
+                        <img src="assets/img/My Projects/project list/Capture 1.jpg" alt="SONY ILX555K CCD Drive">
+                     </div>
+                     <div class="project-body">
+                        <div>
+                           <span class="project-tag">Autonomous Systems / Sensor Fusion</span>
+                           <h3 class="project-title">Advanced Limited-Area Self-Driving Vehicle </h3>
+                           <p class="project-text">Development of a geofenced autonomous navigation system fusing AI vision and custom phased-array ultrasonic sensor mapping as a cost-effective alternative to traditional LiDAR.</p>
+                        </div>
+                        <a href="self driving car.html" class="btn-view-project">View Project Details</a>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                  <div class="project-card">
+                     <div class="project-img-container">
+                        <img src="assets/img/My Projects/project list/Capture.jpg" alt="Aflatoxin Detection">
+                     </div>
+                     <div class="project-body">
+                        <div>
+                           <span class="project-tag">R&D / UAV Engineering / Power Systems</span>
+                           <h3 class="project-title">Project AeroHybrid Heavy-Lift Drone</h3>
+                           <p class="project-text">Design of an advanced hybrid power architecture integrating a miniature combustion engine with high-capacity lithium backups to achieve extended range and heavy payload delivery.</p>
+                        </div>
+                        <a href="drone.html" class="btn-view-project">View Project Details</a>
+                     </div>
+                  </div>
+               </div>
+
+               
+
+              
+
+               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                  <div class="project-card">
+                     <div class="project-img-container">
+                        <img src="assets/img/My Projects/project list/5g spectrum.jpg" alt="5G Spectrum Refarming">
+                     </div>
+                     <div class="project-body">
+                        <div>
+                           <span class="project-tag">Telecommunications / RF Optimization</span>
+                           <h3 class="project-title">5G Spectrum Refarming in Sri Lanka</h3>
+                           <p class="project-text">An analytical strategic framework investigating frequency reallocation and optimization models to maximize nationwide sub-GHz 5G infrastructure layouts.</p>
+                        </div>
+                        <a href="5G.html" class="btn-view-project">View Project Details</a>
+                     </div>
+                  </div>
+               </div>
+
+
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <footer>
+      <div class="footer-area">
+         <div class="container" style="padding: 30px 0;">
+            <div class="text-center">
+               <p>© 2026 S M G A Sipkaduwa. All Rights Reserved.</p>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+   <script src="./assets/js/bootstrap.min.js"></script>
+   <script src="./assets/js/main.js"></script>
+</body>
+</html>

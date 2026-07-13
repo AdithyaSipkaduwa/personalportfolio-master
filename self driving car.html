@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project EchoDrive - Autonomous Pod</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --card-bg: #131a26;
+            --accent-cyan: #00d2ff;
+            --accent-blue: #3a7bd5;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section with Transparent Image */
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+            border-bottom: 2px solid rgba(0, 210, 255, 0.2);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/img/My%20Projects/self%20drive/Capture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Transparent effect as requested */
+            mix-blend-mode: screen;
+            z-index: 0;
+            filter: blur(2px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 20px;
+            color: var(--accent-cyan);
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Container & Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 15px;
+            margin-bottom: 2rem;
+            margin-top: 4rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 210, 255, 0.3);
+        }
+
+        .card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p, .card li {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .card ul {
+            padding-left: 1.5rem;
+        }
+
+        .concept-image-wrapper {
+            width: 100%;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .concept-image-wrapper img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 1px solid #333;
+        }
+
+        .highlight-box {
+            background: linear-gradient(145deg, #1a2536, #131a26);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #ffcc00;
+            margin: 2rem 0;
+        }
+
+        /* Simulations Integration styles */
+        .sim-wrapper {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sim-wrapper canvas {
+            background-color: #0d1117;
+            border: 1px solid #444;
+            border-radius: 8px;
+            margin-top: 15px;
+            max-width: 100%;
+        }
+        .controls {
+            background: #242424;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid #444;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #aaa;
+            font-size: 13px;
+        }
+        .checkbox-group { display: flex; gap: 15px; margin-top: 5px; }
+        .checkbox-group label { display: flex; align-items: center; gap: 5px; cursor: pointer; color: #e0e0e0; }
+        input[type="range"] { margin-top: 5px; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+            .hero { min-height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="project-badge">Advanced AI Vision Project</div>
+            <h1>Limited-Area Self-Driving Vehicle</h1>
+            <p class="hero-subtitle">An Advanced AI & Machine Learning-based Autonomous Pod for Geofenced Environments, utilizing Camera Vision and 360° Phased-Array Ultrasonic Beamforming.</p>
+        </div>
+		<div class="main-menu f-right d-none d-lg-block">
+                           <nav> 
+                              <ul id="navigation">
+                                 <li><a href="index.html">Home</a></li>
+                                 
+                                 <li><a href="blog_details.html" style="color: #ff3d1c;">Projects</a></li>
+                                
+                              </ul>
+                           </nav>
+                        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Problem Statement & Context -->
+        <h2 class="section-title">Research Context & Target Area</h2>
+        <div class="card" style="margin-bottom: 3rem;">
+            <h3>Why a "Limited Area" Autonomous Pod?</h3>
+            <p>Deploying fully autonomous vehicles on public roads in South Asia poses extreme challenges. The unpredictable traffic, lack of strict lane discipline, sudden pedestrian movements, and infrastructure limitations (like the developing state of 5G technologies) make it incredibly difficult to train an AI model to the level of human intuition required for open-road chaos.</p>
+            <p><strong>The Solution:</strong> Project EchoDrive is specifically designed for <em>Limited Areas</em> (Geofenced environments) such as large-scale factory plants, university campuses, and expansive housing schemes. In these environments:</p>
+            <ul>
+                <li>Roads are limited, private, and highly predictable.</li>
+                <li>The environment can be strictly pre-mapped (curves, high pedestrian zones, speed bumps, traffic signs).</li>
+                <li>The AI model only needs to focus on real-time object detection and obstacle avoidance within a controlled variable space.</li>
+            </ul>
+        </div>
+
+        <div class="concept-image-wrapper">
+            <!-- User Concept Image -->
+            <img src="assets/img/My%20Projects/self%20drive/concept%20explain%20image.jpg" alt="EchoDrive Concept & Architecture Diagram">
+        </div>
+
+        <!-- Core Methodologies Grid -->
+        <h2 class="section-title">Dual-Sensor Methodology</h2>
+        <div class="content-grid">
+            
+            <!-- Vision System -->
+            <div class="card">
+                <h3>1. Vision System (AI Camera Detection)</h3>
+                <p>Acting as the "eyes" of the vehicle, the camera system reads the environment, tracks the driving path, and trains the machine learning model.</p>
+                <ul>
+                    <li>Real-time object recognition (pedestrians, barriers, vehicles).</li>
+                    <li>Lane and path detection within the mapped geofence.</li>
+                    <li><strong>Environmental adaptation:</strong> The system reacts to environmental data. For example, triggering headlights when darkness or fog limits camera visibility, or reducing speed automatically during rain.</li>
+                </ul>
+            </div>
+
+            <!-- Sonar System -->
+            <div class="card">
+                <h3>2. Phased-Array Ultrasonic Sonar</h3>
+                <p>Traditional LIDAR systems are highly expensive and complex. Instead, this project pioneers a <strong>Phased-Array Ultrasonic Wave Distance Measurement System</strong>.</p>
+                <ul>
+                    <li><strong>Beamforming Principle:</strong> By using an array of ultrasonic transmitters and carefully timing their pulses, waves superimpose (constructive interference).</li>
+                    <li>This creates a much stronger, longer-range directional beam compared to a single sensor.</li>
+                    <li>The vehicle features a 30cm wide ultrasonic panel strip on the Front, Back, and Sides.</li>
+                    <li>Receivers read the bouncing waves to calculate precise distance and depth of obstacles in real-time.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3 style="color: #ffcc00; font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; margin-bottom: 10px;">⚡ Real-Time Processing & Action</h3>
+            <p style="margin: 0; color: #e2e8f0;">The core requirement of Project EchoDrive is ultra-low latency. <strong>Fast Detect ➔ Fast Process ➔ Fast Action</strong>. The system is programmed with practical driving reflexes: initiating emergency stops, managing accelerator down-force, executing sharp left/right turns, sounding the horn, and activating headlight/signal indicators automatically based on sensory input.</p>
+        </div>
+
+
+        <!-- Simulations Section -->
+        <h2 class="section-title">Live Technical Simulations</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Interact with the embedded simulations below to understand the physics of wave superposition and how the 360° sensor array maps the pod's surroundings.(if not working this Simulation : Refresh the web page)</p>
+
+        <!-- SIMULATION 1: Phased Array Beamforming -->
+        <div class="sim-wrapper">
+            <h3 style="color: white; margin-bottom: 15px; font-family: 'Rajdhani', sans-serif;">Phased Array Beamforming Physics</h3>
+            <div class="controls">
+                <div class="control-group">
+                    <label>Steering Delay (Phase Shift)</label>
+                    <input type="range" id="delaySliderSim1" min="-50" max="50" value="0">
+                </div>
+                <div class="control-group">
+                    <label>Transducer Count</label>
+                    <input type="range" id="countSliderSim1" min="2" max="16" value="8" step="1">
+                </div>
+            </div>
+            <canvas id="simCanvas1" width="800" height="400"></canvas>
+        </div>
+
+        <!-- SIMULATION 2: 360 Pod View -->
+        <div class="sim-wrapper">
+            <h3 style="color: white; margin-bottom: 15px; font-family: 'Rajdhani', sans-serif;">Autonomous Pod: 360° Sonar Scanning</h3>
+            <div class="controls">
+                <div class="control-group">
+                    <label>Active Sensor Panels</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="chkFront" checked> Front</label>
+                        <label><input type="checkbox" id="chkBack"> Back</label>
+                        <label><input type="checkbox" id="chkLeft" checked> Left Side</label>
+                        <label><input type="checkbox" id="chkRight" checked> Right Side</label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Beam Steering / Auto-Scan</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="chkAutoSweep" checked> Auto-Scan</label>
+                        <input type="range" id="steeringSliderSim2" min="-40" max="40" value="0" style="width: 150px;">
+                    </div>
+                </div>
+            </div>
+            <canvas id="simCanvas2" width="800" height="600"></canvas>
+        </div>
+
+    </div>
+
+    <!-- Scripts for Simulations -->
+    <script>
+        // ==========================================
+        // SIMULATION 1: Beamforming Physics
+        // ==========================================
+        (() => {
+            const canvas = document.getElementById('simCanvas1');
+            const ctx = canvas.getContext('2d');
+            const delaySlider = document.getElementById('delaySliderSim1');
+            const countSlider = document.getElementById('countSliderSim1');
+
+            let time = 0;
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.globalCompositeOperation = 'lighter';
+
+                const numTransducers = parseInt(countSlider.value);
+                const phaseDelay = parseInt(delaySlider.value) / 10; 
+                const spacing = 20; 
+                const startY = (canvas.height - (numTransducers - 1) * spacing) / 2;
+                const startX = 100;
+                const waveSpeed = 2;
+                const wavelength = 20;
+
+                for (let i = 0; i < numTransducers; i++) {
+                    const y = startY + i * spacing;
+                    const timeOffset = i * phaseDelay; 
+                    const localTime = time - timeOffset;
+
+                    for (let r = 0; r < 20; r++) { 
+                        const radius = (localTime - r * wavelength) * waveSpeed;
+                        if (radius > 0) {
+                            ctx.beginPath();
+                            ctx.arc(startX, y, radius, -Math.PI / 2, Math.PI / 2); 
+                            ctx.strokeStyle = `rgba(0, 210, 255, ${Math.max(0, 0.15 - (radius / 3000))})`; 
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                ctx.globalCompositeOperation = 'source-over'; 
+                for (let i = 0; i < numTransducers; i++) {
+                    const y = startY + i * spacing;
+                    ctx.beginPath();
+                    ctx.arc(startX, y, 6, 0, Math.PI * 2);
+                    ctx.fillStyle = '#00d2ff';
+                    ctx.fill();
+                }
+
+                time += 0.5; 
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // ==========================================
+        // SIMULATION 2: 360 Pod View
+        // ==========================================
+        (() => {
+            const canvas = document.getElementById('simCanvas2');
+            const ctx = canvas.getContext('2d');
+            
+            const chkFront = document.getElementById('chkFront');
+            const chkBack = document.getElementById('chkBack');
+            const chkLeft = document.getElementById('chkLeft');
+            const chkRight = document.getElementById('chkRight');
+            const chkAutoSweep = document.getElementById('chkAutoSweep');
+            const steeringSlider = document.getElementById('steeringSliderSim2');
+
+            let time = 0;
+            let autoSweepAngle = 0;
+
+            const podWidth = 140; 
+            const podHeight = 70; 
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+
+            function drawWaveArray(startX, startY, numTransducers, spacing, angleRotation, phaseDelay, isActive) {
+                if (!isActive) return;
+
+                ctx.save();
+                ctx.translate(startX, startY);
+                ctx.rotate(angleRotation); 
+
+                const offset = -(numTransducers - 1) * spacing / 2;
+                const waveSpeed = 2.5;
+                const wavelength = 18;
+
+                ctx.globalCompositeOperation = 'lighter';
+
+                for (let i = 0; i < numTransducers; i++) {
+                    const y = offset + i * spacing;
+                    const timeOffset = i * (phaseDelay / 10); 
+                    const localTime = time - timeOffset;
+
+                    for (let r = 0; r < 20; r++) { 
+                        const radius = (localTime - r * wavelength) * waveSpeed;
+                        if (radius > 0 && radius < 400) {
+                            ctx.beginPath();
+                            ctx.arc(0, y, radius, -Math.PI / 2, Math.PI / 2); 
+                            const alpha = Math.max(0, 0.12 - (radius / 3000));
+                            ctx.strokeStyle = `rgba(0, 180, 255, ${alpha})`; 
+                            ctx.lineWidth = 1.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                ctx.globalCompositeOperation = 'source-over';
+                for (let i = 0; i < numTransducers; i++) {
+                    const y = offset + i * spacing;
+                    ctx.beginPath();
+                    ctx.arc(0, y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = '#00d2ff';
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                let currentPhase = parseInt(steeringSlider.value);
+                if (chkAutoSweep.checked) {
+                    autoSweepAngle += 0.04;
+                    currentPhase = Math.sin(autoSweepAngle) * 35;
+                    steeringSlider.value = currentPhase;
+                }
+
+                drawWaveArray(cx + podWidth/2, cy, 10, 7, 0, currentPhase, chkFront.checked);
+                drawWaveArray(cx - podWidth/2, cy, 10, 7, Math.PI, -currentPhase, chkBack.checked);
+                drawWaveArray(cx, cy + podHeight/2, 16, 7, Math.PI/2, currentPhase, chkRight.checked);
+                drawWaveArray(cx, cy - podHeight/2, 16, 7, -Math.PI/2, -currentPhase, chkLeft.checked);
+
+                ctx.globalCompositeOperation = 'source-over';
+                
+                // Car Body 
+                ctx.fillStyle = '#1e293b'; 
+                ctx.shadowColor = 'rgba(0, 210, 255, 0.3)';
+                ctx.shadowBlur = 15;
+                ctx.beginPath();
+                ctx.roundRect(cx - podWidth/2, cy - podHeight/2, podWidth, podHeight, 15);
+                ctx.fill();
+                ctx.shadowBlur = 0; 
+                ctx.strokeStyle = '#3a7bd5';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Roof 
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.roundRect(cx - podWidth/2 + 20, cy - podHeight/2 + 10, podWidth - 40, podHeight - 20, 8);
+                ctx.fill();
+
+                // LIDAR/Pods 
+                ctx.fillStyle = '#00d2ff';
+                const podOffsets = [
+                    [cx - podWidth/2 + 5, cy - podHeight/2 + 5],
+                    [cx + podWidth/2 - 15, cy - podHeight/2 + 5],
+                    [cx - podWidth/2 + 5, cy + cy/2 - 50],
+                    [cx + podWidth/2 - 15, cy + cy/2 - 50]
+                ];
+                podOffsets.forEach(pos => {
+                    ctx.beginPath();
+                    ctx.roundRect(pos[0], pos[1], 10, 10, 3);
+                    ctx.fill();
+                });
+
+                // Arrow
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.moveTo(cx + 10, cy - 8);
+                ctx.lineTo(cx + 30, cy);
+                ctx.lineTo(cx + 10, cy + 8);
+                ctx.closePath();
+                ctx.fill();
+
+                time += 0.5;
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+    </script>
+</body>
+</html>
+                                                                               Project Under Woking |
+																			   
+																			   S M G A Sipkaduwa

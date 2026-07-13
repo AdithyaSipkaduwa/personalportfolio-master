@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BIRDS-X Dragonfly Ground Station | Satellite Engineering Blog</title>
+    <meta name="description" content="Advanced Satellite Ground Station Tracking and RF Analysis Node">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    
+    <style>
+        :root {
+            --dark-blue: #020c1b;
+            --space-blue: #0a192f;
+            --light-navy: #112240;
+            --neon-cyan: #64ffda;
+            --tech-white: #e6f1ff;
+            --slate-gray: #8892b0;
+            --circuit-glow: rgba(100, 255, 218, 0.15);
+        }
+
+        body {
+            background-color: var(--dark-blue);
+            color: var(--tech-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Advanced Circuit Paths Animated Background --- */
+        .cyber-circuit-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 50% 50%, #06152d, #020c1b);
+            overflow: hidden;
+        }
+        
+        /* Simulating Printed Circuit Board Bus Lines */
+        .circuit-trace {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            opacity: 0.3;
+            animation: traceFlow 8s infinite linear;
+        }
+        .trace-v {
+            width: 1px; height: 150px;
+            background: linear-gradient(180deg, transparent, var(--neon-cyan), transparent);
+            animation: traceFlowVertical 10s infinite linear;
+        }
+        
+        @keyframes traceFlow {
+            0% { transform: translateX(-100%) translateY(0); opacity: 0.1; }
+            50% { opacity: 0.4; }
+            100% { transform: translateX(200%) translateY(0); opacity: 0.1; }
+        }
+        @keyframes traceFlowVertical {
+            0% { transform: translateY(-100%); opacity: 0.1; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(200%); opacity: 0.1; }
+        }
+
+        /* --- Dynamic Architecture Navigation Bar --- */
+        .custom-navbar {
+            background: rgba(10, 25, 47, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            padding: 12px 0;
+        }
+        .navbar-brand {
+            color: var(--neon-cyan) !important;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+        .nav-link {
+            color: var(--tech-white) !important;
+            margin-left: 18px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active-node {
+            color: var(--neon-cyan) !important;
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+        }
+        .divider-line {
+            color: rgba(100, 255, 218, 0.3);
+            padding: 0 10px;
+            user-select: none;
+        }
+
+        /* --- Fullscreen Visual Header --- */
+        .hero-viewport {
+            width: 100%;
+            height: 100vh;
+            background-image: url('assets/img/My Projects/BIRD-X Satellite Ground Station/Gemini_Generated_Image_cq1suxcq1suxcq1s.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-darkener {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(2,12,27,0.3) 0%, rgba(2,12,27,0.85) 85%);
+        }
+        .hero-text-card {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 850px;
+            padding: 45px;
+            background: rgba(17, 34, 64, 0.8);
+            border: 1px solid rgba(100, 255, 218, 0.25);
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+        }
+        .hero-text-card h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .hero-text-card p {
+            color: var(--neon-cyan);
+            font-family: 'Courier New', monospace;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        /* --- Content Layout --- */
+        .blog-container {
+            max-width: 960px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .blog-section {
+            background: var(--light-navy);
+            border: 1px solid rgba(230, 241, 255, 0.04);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 45px;
+            box-shadow: 0 12px 35px rgba(2,12,27,0.4);
+        }
+        .blog-section h2 {
+            color: var(--neon-cyan);
+            font-size: 1.85rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            padding-bottom: 12px;
+        }
+        .blog-section h3 {
+            color: #fff;
+            font-size: 1.35rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* --- Monospace Mathematical Safe Box --- */
+        .math-equation-container {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--neon-cyan);
+            margin: 22px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.8);
+        }
+        .math-label {
+            color: var(--slate-gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* --- Controlled Media Architecture --- */
+        .blog-image-wrapper {
+            text-align: center;
+            margin: 30px 0;
+            background: rgba(2, 12, 27, 0.5);
+            padding: 18px;
+            border-radius: 6px;
+            border: 1px solid rgba(230, 241, 255, 0.05);
+        }
+        .blog-image-wrapper img {
+            max-width: 100%;
+            max-height: 380px; /* Controlled restriction to avoid oversized rendering */
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .blog-image-wrapper img:hover {
+            transform: scale(1.015);
+        }
+        .image-caption {
+            color: var(--slate-gray);
+            font-size: 0.88rem;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Multimedia Grid Formatting */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        .gallery-grid .blog-image-wrapper {
+            margin: 0;
+        }
+        .gallery-grid .blog-image-wrapper img {
+            max-height: 180px;
+        }
+
+        /* --- High-Response Action Buttons --- */
+        .resource-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .animated-btn {
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+            display: inline-block;
+        }
+        .animated-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--neon-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(100, 255, 218, 0.15);
+            text-decoration: none;
+        }
+        .inline-link-btn {
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        .highlight-text {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cyber-circuit-bg">
+        <div class="circuit-trace" style="width: 200px; height: 1px; top: 15%; left: 10%;"></div>
+        <div class="circuit-trace" style="width: 350px; height: 2px; top: 45%; left: 60%; animation-delay: 2s;"></div>
+        <div class="circuit-trace" style="width: 150px; height: 1px; top: 75%; left: 25%; animation-delay: 4s;"></div>
+        <div class="circuit-trace trace-v" style="top: 5%; left: 40%; animation-delay: 1s;"></div>
+        <div class="circuit-trace trace-v" style="top: 50%; left: 85%; animation-delay: 3s;"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-satellite-dish"></i> AEROSPACE Project</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="color: var(--neon-cyan);"><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog_details.html#projects">Projects</a></li>
+                    
+                    <span class="divider-line">|</span>
+                    
+                    <li class="nav-item"><a class="nav-link active-node" href="#overview">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rf-subsystem">RF Subsystem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#link-budget">Link Budget</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#calibration">Calibration</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-viewport" id="home">
+        <div class="hero-darkener"></div>
+        <div class="hero-text-card">
+            <h1>BIRDS-X Dragonfly</h1>
+            <p>Deploying Sri Lanka's 3rd Nano-Satellite Ground Tracking Node</p>
+        </div>
+    </header>
+
+    <main class="blog-container">
+
+        <article class="blog-section" id="overview">
+            <h2>1. BIRDS-X Dragonfly Project Paradigm</h2>
+            <p>The <span class="highlight-text">BIRDS-X Dragonfly</span> is a 2U Nano-Satellite engineered as a joint global venture by the Kyushu Institute of Technology (Kyutech), Japan, and the Arthur C. Clarke Institute for Modern Technologies (ACCIMT), Sri Lanka. Carried to the International Space Station (ISS) aboard SpaceX mission SPX-33 on August 24, 2025, it marks a critical developmental shift in Sri Lanka's aerospace capabilities following RAAVANA-1 (2019) and KITSUNE (2022).</p>
+            
+            <p>The core academic goals focus on evaluating cutting-edge low-cost Commercial Off-The-Shelf (COTS) components inside space environments, operating an Automatic Packet Reporting System (APRS) Digipeater for global amateur radio relays, and deploying Store-and-Forward data network routing systems.</p>
+
+            <div class="blog-image-wrapper">
+                <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/Communication diagram.jpg" alt="BIRDS-X Core System Architecture">
+                <div class="image-caption">Figure 1: Comprehensive System Block Diagram and Processing Nodes.</div>
+            </div>
+        </article>
+
+        <article class="blog-section" id="rf-subsystem">
+            <h2>2. Ground Station RF Array & Kinematics</h2>
+            <p>Tracking Low Earth Orbit (LEO) satellites requires high-precision structural tracking networks. The ground station array deployed for this operation uses a dual-band split structure split into independent <span class="highlight-text">VHF (Very High Frequency)</span> and <span class="highlight-text">UHF (Ultra High Frequency)</span> elements constructed from highly conductive, lightweight aerospace aluminum alloy booms.</p>
+
+            <h3>Dual Axis Rotational Mechanics</h3>
+            <p>To follow the satellite's orbital trace from horizon to horizon, the antenna array is manipulated by an autonomous dual-motor positioning architecture executing real-time target path alignments based on calculated Two-Line Element (TLE) positional data vectors:</p>
+            <ul>
+                <li><strong>Azimuth Tracking Axis:</strong> Drives horizontal rotation spanning a full range of 0° to 360°.</li>
+                <li><strong>Elevation Tracking Axis:</strong> Compensates for vertical curvature variations ranging from 0° to 90° reference to local horizon points.</li>
+                <li><strong>Rotational Dynamics:</strong> Controlled dynamically through variable motor angular velocities matched against orbital tracking speed vectors to prevent signal degradation or cross-polarization dropouts.</li>
+            </ul>
+
+            <div class="blog-image-wrapper">
+                <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.42 PM (2).jpg" alt="Dual Axis Motor Mechanical Base">
+                <div class="image-caption">Figure 2: Real-time Azimuth-Elevation Dual Axis Tracking Servomechanism.</div>
+            </div>
+
+            <div class="blog-image-wrapper">
+                <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/RF Array Dimensional Layout.jpg" alt="RF Array Dimensional Layout Configuration">
+                <div class="image-caption">Figure 3: VHF/UHF RF Array Dimensional Layout.</div>
+                <a href="https://www.analog.com/en/resources/analog-dialogue/articles/phased-array-antenna-patterns-part1.html" class="animated-btn inline-link-btn" target="_blank"><i class="fas fa-external-link-alt"></i> Reference: Phased Array Antenna Analysis</a>
+            </div>
+        </article>
+
+        <article class="blog-section" id="link-budget">
+            <h2>3. Mathematical Link Budget Modeling</h2>
+            <p>For sustainable communication, calculating the Free Space Path Loss (FSPL) and signal degradation vectors is crucial. Students can compute these using the fundamental mathematical models shown below:</p>
+
+            <span class="math-label">Equation 1: Free Space Path Loss (FSPL)</span>
+            <div class="math-equation-container">
+                FSPL (dB) = 20*log10(d) + 20*log10(f) + 20*log10(4*π / c)
+            </div>
+
+            <span class="math-label">Equation 2: Antenna Gain Calculations</span>
+            <div class="math-equation-container">
+                G (dBi) = 10*log10( (4*π * A_eff) / λ^2 )
+            </div>
+
+            <h3>Operational Parameters from Link Budget Files</h3>
+            <p>According to verified project telemetry sheets, the link budget structures for the respective bands are configured as follows:</p>
+            <ul>
+                <li><strong>Uplink Path (VHF Band):</strong> Operating at <span class="highlight-text">145.825 MHz</span> utilizing AFSK modulation with AX.25 protocol configurations at a data rate of 1200 bps. The Ground Station outputs a Transmitter Power of 50.0 W (17.0 dBW), driving an antenna system with a net Gain of 16.0 dBi to achieve a System Link Margin of 16.6 dB.</li>
+                <li><strong>Downlink Path (UHF Band):</strong> Operates at <span class="highlight-text">437.375 MHz</span> using GMSK / Morse Code modulations at 4800 bps. Spacecraft transmitter operates at 0.8 W (-1.0 dBW), through a 22.0 dBi Ground Station Antenna gain, maintaining a stable Downlink Margin of 4.2 dB.</li>
+            </ul>
+
+            <div class="blog-image-wrapper">
+                <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/Link budget.jpg" alt="Link Budget Telemetry Chart">
+                <div class="image-caption">Figure 4: Extracted Transceiver Telemetry Matrix and Calculated Margins.</div>
+            </div>
+
+            <h3>Antenna Radiation Pattern Analysis</h3>
+            <div class="gallery-grid">
+                <div class="blog-image-wrapper">
+                    <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/uhf antenna raddiation pattern.jpg" alt="UHF Radiation Pattern Map">
+                    <div class="image-caption">Figure 5a: UHF Dipole Radiation Pattern.</div>
+                </div>
+                <div class="blog-image-wrapper">
+                    <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/vhf antenna raddiation pattern.jpg" alt="VHF Radiation Pattern Map">
+                    <div class="image-caption">Figure 5b: VHF Dipole Radiation Pattern.</div>
+                </div>
+            </div>
+        </article>
+
+        <article class="blog-section" id="calibration">
+            <h2>4. Hardware Calibration & Impedance Optimization</h2>
+            <p>During the post-mounting integration phases, the coaxial transmission routing network—interconnected using heavy-duty <span class="highlight-text">BNC (Bayonet Neill–Concelman) Connectors</span> and low-loss shielding cable paths—undergoes strict hardware calibration routines.</p>
+            <p>Using a laboratory <span class="highlight-text">Spectrum Analyzer</span>, the impedance parameters are precisely tuned to match standard 50 Ω RF network metrics. This rigorous calibration maximizes transmission power transfer efficiency, expands working frequency band parameters, and reduces insertion losses (Attenuation) and Voltage Standing Wave Ratios (VSWR).</p>
+
+            <h3>BNC Connectors & Cable Interconnect Systems</h3>
+            <div class="gallery-grid">
+                <div class="blog-image-wrapper"><img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.38 PM.jpg" alt="BNC Hardware Setup"></div>
+                <div class="blog-image-wrapper"><img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.39 PM.jpg" alt="BNC Coaxial Assembly"></div>
+                <div class="blog-image-wrapper"><img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.41 PM.jpg" alt="RF Feeder Integration"></div>
+                <div class="blog-image-wrapper"><img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.42 PM.jpg" alt="Terminated RF Cable"></div>
+            </div>
+
+            <h3>RF Spectrum Analysis & Field Calibration Profiles</h3>
+            <div class="gallery-grid">
+                <div class="blog-image-wrapper">
+                    <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.39 PM (1).jpg" alt="Analyzer Scan Phase 1">
+                    <div class="image-caption">Figure 6a: Return Loss Waveform.</div>
+                </div>
+                <div class="blog-image-wrapper">
+                    <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.39 PM (2).jpg" alt="Analyzer Scan Phase 2">
+                    <div class="image-caption">Figure 6b: VSWR Impedance Match Graph.</div>
+                </div>
+            </div>
+
+            <h3>Completed Ground Node Installation</h3>
+            <div class="blog-image-wrapper">
+                <img src="assets/img/My Projects/BIRD-X Satellite Ground Station/WhatsApp Image 2026-07-08 at 5.26.40 PM (1).jpg" alt="Fully Calibrated Assembled Antenna Node">
+                <div class="image-caption">Figure 7: Final Configured Array Ready for Satellite Acquisition Tracking.</div>
+            </div>
+        </article>
+
+        <article class="blog-section">
+            <h2>5. Open Source Repository & Academic Documents</h2>
+            <p>For undergraduate research verification, direct institutional links and authentic analytical source files are archived below. Click any module to evaluate full operational parameters directly inside a new workspace browser tab:</p>
+            
+            <div class="resource-btn-group">
+                <a href="https://www.accimt.ac.lk/title-6/" class="animated-btn" target="_blank"><i class="fas fa-globe"></i> Learn More at ACCIMT Portal</a>
+                <a href="BIRDS-X_AntennaPattern.pdf" class="animated-btn" target="_blank"><i class="fas fa-file-pdf"></i> Antenna Radiation Patterns</a>
+                <a href="BIRDS-X_CommunicationDiagram_open_ver1.3.pdf" class="animated-btn" target="_blank"><i class="fas fa-file-pdf"></i> Structural Telecom Schematics</a>
+                <a href="BIRDS-X_LinkBudget_v4_JP_open.pdf" class="animated-btn" target="_blank"><i class="fas fa-file-pdf"></i> Primary Link Budget Database</a>
+                <a href="BIRDSX_communication_plan.pdf" class="animated-btn" target="_blank"><i class="fas fa-file-pdf"></i> Comprehensive Mission Plan</a>
+            </div>
+        </article>
+
+    </main>
+
+    <footer style="background: #020c1b; border-top: 1px solid rgba(100, 255, 218, 0.1); padding: 35px 0; text-align: center;">
+        <div class="container">
+            <p style="color: var(--slate-gray); margin: 0; font-size: 0.9rem;">&copy; 2026 S M G A Sipkaduwa | Satellite Ground Station Engineering | All institutional data rights reserved under ACCIMT..</p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+</body>
+</html>

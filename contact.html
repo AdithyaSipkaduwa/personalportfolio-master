@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | S M G A Sipkaduwa</title>
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Light Purple & White Theme Palette */
+        :root {
+            --bg-light: #fdfbfd;       /* Soft white with a touch of purple */
+            --bg-card: #ffffff;        /* Pure white for cards */
+            --purple-primary: #7c3aed;  /* Vibrant Purple for primary highlights */
+            --purple-light: #f3e8ff;    /* Light Purple background accent */
+            --purple-dark: #4c1d95;     /* Deep purple for highly readable text */
+            --text-dark: #1f2937;      /* Dark gray for descriptions */
+            --border-color: #e5e7eb;   /* Light gray for subtle borders */
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar-custom {
+            background-color: var(--bg-card);
+            padding: 15px 30px;
+            border-bottom: 2px solid var(--purple-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand-text {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--purple-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn {
+            margin-left: 15px;
+            font-weight: 600;
+            color: var(--purple-dark);
+            text-decoration: none;
+            padding: 8px 20px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--purple-primary);
+            border-color: var(--purple-primary);
+            background-color: var(--purple-light);
+        }
+
+        /* Contact Container Split Layout */
+        .contact-container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        /* Information Column Card Styling */
+        .info-panel {
+            background-color: var(--purple-light);
+            border-radius: 12px;
+            padding: 40px 30px;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.05);
+        }
+
+        .info-panel h2 {
+            color: var(--purple-dark);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            background-color: var(--bg-card);
+            color: var(--purple-primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--purple-dark);
+        }
+
+        .info-text p, .info-text a {
+            margin: 0;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .info-text a:hover {
+            color: var(--purple-primary);
+        }
+
+        /* Contact Form Layout Configuration */
+        .form-panel h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--purple-dark);
+            margin-bottom: 30px;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            border-radius: 4px;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .form-control-custom:focus {
+            border-color: var(--purple-primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        textarea.form-control-custom {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        /* Send Button - Matched to Image Layout Customization */
+        .btn-send-custom {
+            background: transparent;
+            color: #ff5a5f; /* Keeping the unique contrast red element from your layout reference */
+            border: 2px solid #ff5a5f;
+            padding: 12px 45px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-send-custom:hover {
+            background-color: #ff5a5f;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 90, 95, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar-custom d-flex justify-content-between align-items-center">
+    <div class="navbar-brand-text">S M G Adithya Sipkaduwa</div>
+    <div class="d-flex">
+        <a class="nav-btn" href="index.html"><i class="fa-solid fa-house"></i> HOME</a>
+        <a class="nav-btn" href="about.html"><i class="fa-solid fa-user"></i> ABOUT</a>
+        <a class="nav-btn" href="blog_details.html"><i class="fa-solid fa-microchip"></i> PROJECTS</a>
+    </div>
+</nav>
+
+<div class="container contact-container">
+    <div class="row g-5">
+        
+        <!-- Left Side: Contact Form (Matched directly to your image layout template) -->
+        <div class="col-lg-7 form-panel">
+            <h2>Get in Touch</h2>
+            
+            <!-- Standard dynamic form routing targeting Formspree endpoint -->
+            <form action="https://formspree.io/f/sipkaduwa.adithya@gmail.com" method="POST">
+                
+                <!-- 1. Textarea at the top row (Full Width) -->
+                <textarea class="form-control-custom" name="message" placeholder="Enter Message" required></textarea>
+                
+                <!-- 2. Name and Email Row split 50/50 -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control-custom" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control-custom" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+                
+                <!-- 3. Subject Line Field -->
+                <input type="text" class="form-control-custom" name="subject" placeholder="Enter Subject" required>
+                
+                <!-- 4. Form Trigger Action Anchor Element -->
+                <button type="submit" class="btn-send-custom">SEND</button>
+            </form>
+        </div>
+
+        <!-- Right Side: Contact Information Cards -->
+        <div class="col-lg-5">
+            <div class="info-panel">
+                <h2>Contact Information</h2>
+                
+                <!-- Primary Personal Email Connection -->
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-text">
+                        <h4>Gmail</h4>
+                        <p><a href="mailto:sipkaduwa.adithya@gmail.com">sipkaduwa.adithya@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <!-- Secondary Corporate Outlook Connection -->
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="info-text">
+                        <h4>Outlook</h4>
+                        <p><a href="mailto:adithya.sipkaduwa@outlook.com">adithya.sipkaduwa@outlook.com</a></p>
+                    </div>
+                </div>
+
+                <!-- Telephony Reach Route Contact -->
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <h4>Mobile Contact</h4>
+                        <p><a href="tel:0772969022">077 296 9022</a></p>
+                    </div>
+                </div>
+
+                <!-- Geographical Relocation Node Data -->
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-text">
+                        <h4> Live Location </h4>
+                        <p>Pannipitiya, Colombo, Sri Lanka</p>
+                    </div>
+                </div>
+
+                <!-- Professional Network Graph Reference -->
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="info-text">
+                        <h4>LinkedIn Identity</h4>
+                        <p><a href="https://www.linkedin.com/in/adithya-sipkaduwa-a894253b9/" target="_blank" rel="noopener noreferrer">View Professional Profile</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Light Minimalist Footer Content Block -->
+<footer class="text-center py-4 mt-5" style="background-color: var(--purple-light); border-top: 1px solid rgba(124, 58, 237, 0.1);">
+    <p class="mb-0" style="color: var(--purple-dark); font-weight: 500;">&copy; 2026 | Developed by S M G A Sipkaduwa. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

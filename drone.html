@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Heavy-Lift Drone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151b2b;
+            --accent-orange: #ff6b00;
+            --accent-green: #00ff88;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --nav-bg: rgba(11, 15, 25, 0.9);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hero / Header Section */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            border-bottom: 2px solid rgba(255, 107, 0, 0.2);
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Transparent Background Image */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/img/My Projects/drone/Capture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Transparent effect */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.8rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Concept Image Section */
+        .concept-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 4rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .concept-image {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 107, 0, 0.5);
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.15);
+            margin-top: 1.5rem;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.1);
+        }
+
+        .app-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Simulation Section Styles */
+        .simulation-container {
+            background: #111;
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .sim-header {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent-green);
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .gauge {
+            background: #1a2332;
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 30%;
+            min-width: 200px;
+            text-align: center;
+            border: 1px solid #2a3548;
+        }
+
+        .gauge h4 {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .bar-container {
+            background: #0b0f19;
+            height: 25px;
+            border-radius: 12.5px;
+            overflow: hidden;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 100%;
+            transition: width 0.2s linear, background-color 0.3s;
+        }
+
+        .fuel-bar { background: var(--accent-orange); }
+        .battery-bar { background: var(--accent-green); }
+
+        .status-text {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #0d121c;
+            border: 1px solid #2a3548;
+            border-radius: 10px;
+            max-width: 100%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        button {
+            background: var(--accent-orange);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #e66000;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <div class="logo">AERO_HYBRID</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="future Research.html" style="color: #ff3d1c;">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Transparent Background -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Project Hybrid Drone</h1>
+            <p>Advanced Hybrid Heavy-Lift Drone integrating Combustion Engine Power Generation with High-Capacity Lithium Backups for Unlimited Range & Heavy Payload capabilities.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Concept Image Section -->
+        <div class="concept-section">
+            <h2 style="font-family: 'Orbitron', sans-serif; color: #fff; text-align: center;">Drone Concept Art</h2>
+            <img src="assets/img/My Projects/drone/Gemini_Generated_Image_ugfp9jugfp9jugfp.jpg" alt="Hybrid Drone Concept" class="concept-image">
+        </div>
+
+        <h2 style="font-family: 'Orbitron', sans-serif; margin-bottom: 2rem; color: #fff;">Key Applications</h2>
+        
+        <div class="applications-grid">
+            <!-- App 1 -->
+            <div class="app-card">
+                <h3>🚀 High-Speed Courier & Delivery</h3>
+                <p>Overcomes standard 30-minute flight time limits. The onboard engine continuously charges the battery, allowing for inter-city heavy package deliveries without needing recharge stops.</p>
+            </div>
+            
+            <!-- App 2 -->
+            <div class="app-card">
+                <h3>🏢 High-Rise Apartment Drops</h3>
+                <p>Designed to interface with balcony "Drone Pads". Residents in tall apartments no longer need to go to the ground floor. The drone handles extreme vertical lifts effortlessly using hybrid bursts.</p>
+            </div>
+            
+            <!-- App 3 -->
+            <div class="app-card">
+                <h3>🎯 Military & Tactical Payload</h3>
+                <p>Capable of carrying heavy payloads over long distances. Battery mode can be engaged for silent, stealth approaches after traveling via engine power.</p>
+            </div>
+        </div>
+
+        <!-- Interactive Simulation (Your Original Advanced Code) -->
+        <div class="simulation-container">
+            <h2 class="sim-header">Hybrid Energy Flow Simulation</h2>
+            
+            <div class="dashboard">
+                <div class="gauge">
+                    <h4>FUEL TANK (ENGINE)</h4>
+                    <div class="bar-container">
+                        <div class="bar-fill fuel-bar" id="fuelBar"></div>
+                    </div>
+                    <div class="status-text" id="fuelText">100%</div>
+                </div>
+                
+                <div class="gauge">
+                    <h4>BATTERY (RESERVE)</h4>
+                    <div class="bar-container">
+                        <div class="bar-fill battery-bar" id="batteryBar"></div>
+                    </div>
+                    <div class="status-text" id="batteryText">100%</div>
+                </div>
+
+                <div class="gauge">
+                    <h4>FLIGHT TIME</h4>
+                    <div class="status-text" style="font-size: 2rem; color: var(--accent-orange);" id="timeText">00:00</div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">(Simulated Minutes)</div>
+                </div>
+            </div>
+
+            <!-- Visualizer Canvas -->
+            <canvas id="droneCanvas" width="800" height="300"></canvas>
+
+            <div class="controls">
+                <button id="startBtn">Start Flight Simulation</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fuelBar = document.getElementById('fuelBar');
+        const batteryBar = document.getElementById('batteryBar');
+        const fuelText = document.getElementById('fuelText');
+        const batteryText = document.getElementById('batteryText');
+        const timeText = document.getElementById('timeText');
+        const startBtn = document.getElementById('startBtn');
+        const canvas = document.getElementById('droneCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let fuel = 100.0;
+        let battery = 100.0;
+        let flightTime = 0;
+        let isFlying = false;
+        let animationId;
+        let propAngle = 0;
+
+        // Constants for logic
+        const fuelDrainRate = 0.05; // Fuel used by engine
+        const engineChargeRate = 0.04; // Power sent to battery from engine
+        const motorDrainRate = 0.035; // Power used to fly
+
+        function drawSchematic() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            // Draw connecting lines (Energy flow)
+            ctx.strokeStyle = '#2a3548';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(centerX - 200, centerY); // From Fuel
+            ctx.lineTo(centerX, centerY);       // To Engine
+            ctx.lineTo(centerX, centerY + 80);  // To Battery
+            ctx.moveTo(centerX, centerY);       // From Engine
+            ctx.lineTo(centerX + 200, centerY); // To Motors
+            ctx.moveTo(centerX, centerY + 80);  // From Battery
+            ctx.lineTo(centerX + 200, centerY); // To Motors
+            ctx.stroke();
+
+            // Draw Energy Flow Particles if flying
+            if (isFlying) {
+                const time = Date.now() / 20;
+                ctx.fillStyle = 'rgba(255, 107, 0, 0.8)'; // Orange for fuel flow
+                ctx.beginPath();
+                ctx.arc(centerX - 200 + (time % 200), centerY, 4, 0, Math.PI*2);
+                ctx.fill();
+
+                if (fuel > 0) {
+                    ctx.fillStyle = 'rgba(0, 255, 136, 0.8)'; // Green for charge flow
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY + (time % 80), 4, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            }
+
+            // Draw Nodes
+            function drawNode(x, y, label, color) {
+                ctx.fillStyle = '#151b2b';
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(x, y, 40, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+                
+                ctx.fillStyle = '#fff';
+                ctx.font = '12px Orbitron';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(label, x, y);
+            }
+
+            drawNode(centerX - 200, centerY, "FUEL", (fuel > 20) ? "#ff6b00" : "#ff0000");
+            drawNode(centerX, centerY, "ENGINE", (fuel > 0 && isFlying) ? "#00ff88" : "#555");
+            drawNode(centerX, centerY + 80, "BATTERY", (battery > 20) ? "#00ff88" : "#ff0000");
+            
+            // Draw Drone Propellers
+            ctx.save();
+            ctx.translate(centerX + 200, centerY);
+            
+            // Motors node
+            ctx.fillStyle = '#151b2b';
+            ctx.strokeStyle = '#00d2ff';
+            ctx.beginPath();
+            ctx.arc(0, 0, 45, 0, Math.PI*2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = '#fff';
+            ctx.fillText("MOTORS", 0, 0);
+
+            // Props
+            if(isFlying) propAngle += 0.5;
+            ctx.rotate(propAngle);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(-60, 0);
+            ctx.lineTo(60, 0);
+            ctx.moveTo(0, -60);
+            ctx.lineTo(0, 60);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function updateSimulation() {
+            if (!isFlying) return;
+
+            // Logic: Engine runs if fuel > 0
+            if (fuel > 0) {
+                fuel -= fuelDrainRate;
+                // Engine charges battery, but battery powers motors
+                let netBatteryChange = engineChargeRate - motorDrainRate;
+                battery += netBatteryChange;
+            } else {
+                // Out of fuel, pure battery flight
+                battery -= motorDrainRate;
+            }
+
+            // Cap battery at 100%
+            if (battery > 100) battery = 100;
+
+            // Stop if battery is dead
+            if (battery <= 0) {
+                battery = 0;
+                isFlying = false;
+                startBtn.textContent = "Flight Ended (Power Depleted)";
+                startBtn.disabled = true;
+            }
+
+            // Update UI
+            fuelBar.style.width = Math.max(0, fuel) + '%';
+            fuelText.textContent = Math.max(0, fuel).toFixed(1) + '%';
+            
+            batteryBar.style.width = Math.max(0, battery) + '%';
+            batteryText.textContent = Math.max(0, battery).toFixed(1) + '%';
+
+            // Change colors if low
+            if (fuel < 20) fuelBar.style.background = '#ff0000';
+            if (battery < 20) batteryBar.style.background = '#ff0000';
+
+            flightTime += 1;
+            let minutes = Math.floor(flightTime / 60);
+            let seconds = flightTime % 60;
+            timeText.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            drawSchematic();
+
+            if (isFlying) {
+                animationId = requestAnimationFrame(updateSimulation);
+            }
+        }
+
+        startBtn.addEventListener('click', () => {
+            if (!isFlying) {
+                isFlying = true;
+                startBtn.textContent = "System Flying...";
+                startBtn.disabled = true;
+                updateSimulation();
+            }
+        });
+
+        // Initial draw
+        drawSchematic();
+    </script>
+</body>
+</html>
+
+Project Under Working | S M G A Sipkaduwa

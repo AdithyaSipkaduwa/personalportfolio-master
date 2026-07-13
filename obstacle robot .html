@@ -1,0 +1,359 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Obstacle Avoidance Robot - Tech </title>
+    <meta name="description" content="Arduino Uno based Obstacle Avoidance Robot Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    
+    <style>
+    /* -----------------------------
+       Light Red & Black Theme Palette
+       ----------------------------- */
+    :root {
+        --theme-black: #1a1a1a;
+        --theme-dark-red: #900000;
+        --theme-red: #d32f2f;
+        --theme-light-red: #ffebee;
+        --theme-accent: #ffcdd2;
+        --card-bg: #ffffff;
+        --bg-light: #fafafa;
+        --text-dark: #2d2d2d;
+        --white: #ffffff;
+    }
+
+    body {
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* -----------------------------
+       Animated Sonar Radar Background 
+       ----------------------------- */
+    .sonar-wrapper {
+        position: fixed; /* Keeps it covering the background even when scrolling */
+        top: 0; left: 0; width: 100%; height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .sonar-ring {
+        position: absolute;
+        border: 2px solid rgba(211, 47, 47, 0.12); /* Subtle light red rings */
+        border-radius: 50%;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        animation: sonarPulse 6s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+    }
+    .ring-1 { animation-delay: 0s; }
+    .ring-2 { animation-delay: 1.5s; }
+    .ring-3 { animation-delay: 3s; }
+    .ring-4 { animation-delay: 4.5s; }
+
+    @keyframes sonarPulse {
+        0% { width: 50px; height: 50px; opacity: 1; border-width: 4px; }
+        100% { width: 2500px; height: 2500px; opacity: 0; border-width: 1px; }
+    }
+    
+    /* Navigation Adjustments */
+    .header-area { box-shadow: 0 2px 15px rgba(0,0,0,0.08); background: var(--white); padding: 15px 0; position: relative; z-index: 10; }
+    .main-menu ul { display: flex; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
+    .main-menu ul li { margin-left: 30px; }
+    .main-menu ul li a { font-weight: 600; color: var(--theme-black); text-decoration: none; padding: 10px 0; display: block; }
+    .main-menu ul li a:hover { color: var(--theme-red); }
+    
+    .section-padding { padding: 80px 0; position: relative; z-index: 2; }
+    
+    /* Premium Content Cards */
+    .tech-card {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 35px;
+        border-left: 6px solid var(--theme-red);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        height: 100%;
+        position: relative; /* Places card above sonar */
+    }
+    .tech-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(211, 47, 47, 0.18);
+    }
+    .tech-card.black-card { border-left-color: var(--theme-black); }
+
+    h2, h3, h4 { color: var(--theme-black); font-weight: 700; margin-bottom: 22px; }
+    p { line-height: 1.8; color: #555; font-size: 1.05em; text-align: justify; }
+
+    /* Custom Table Styling */
+    .custom-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+    .custom-table th { background-color: var(--theme-black); color: var(--white); padding: 12px 15px; text-align: left; }
+    .custom-table td { background-color: var(--theme-light-red); padding: 12px 15px; border-bottom: 2px solid var(--white); color: var(--theme-black); font-weight: 500;}
+    .custom-table tr:hover td { background-color: var(--theme-accent); transition: 0.3s; }
+
+    /* Media Grid Configuration */
+    .media-box {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        background: var(--white);
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid var(--theme-accent);
+        transition: transform 0.3s ease;
+    }
+    .media-box:hover {
+        transform: scale(1.04);
+        box-shadow: 0 12px 30px rgba(211, 47, 47, 0.25);
+    }
+    .media-box img {
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        object-fit: contain; /* No cropping allowed */
+        display: block;
+        margin: 0 auto;
+    }
+    .media-box.small-grid img { max-height: 250px; }
+
+    .master-caption {
+        text-align: center; font-weight: 700; color: var(--theme-dark-red); margin-top: 10px; margin-bottom: 35px; font-size: 1.1em;
+        letter-spacing: 0.5px; border-bottom: 2px solid rgba(211, 47, 47, 0.1); padding-bottom: 10px;
+    }
+
+    /* Immersive Hero Header Container */
+    .hero-canvas {
+        position: relative;
+        background-image: url('assets/img/My Projects/obstacter robot/Gemini_Generated_Image_2c5c8f2c5c8f2c5c.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 160px 0;
+        text-align: center;
+        z-index: 1;
+    }
+    .hero-canvas::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(26, 26, 26, 0.82); /* Dark black/red tint overlay */
+        backdrop-filter: blur(4px);
+        z-index: -1;
+    }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    .anim-fade-up { animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.3s; }
+    .stagger-3 { animation-delay: 0.5s; }
+    
+    footer { background: var(--theme-black); color: var(--white); padding: 35px 0; text-align: center; margin-top: 50px; position: relative; z-index: 5;}
+    </style>
+</head>
+
+<body>
+    <div class="sonar-wrapper">
+        <div class="sonar-ring ring-1"></div>
+        <div class="sonar-ring ring-2"></div>
+        <div class="sonar-ring ring-3"></div>
+        <div class="sonar-ring ring-4"></div>
+    </div>
+
+    <header>
+        <div class="header-area header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <div class="logo">
+                            <h4 style="font-weight: bold; color: var(--theme-black); margin: 0; cursor: default; letter-spacing: 1px;">ROBOTICS </h4>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8">
+                        <div class="main-menu d-none d-lg-block">
+                            <nav> 
+                                <ul id="navigation">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="blog_details.html">Projects</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="hero-canvas">
+            <div class="container">
+                <div class="hero-text anim-fade-up stagger-1">
+                    <div style="display: inline-block; padding: 12px 24px; background: rgba(211, 47, 47, 0.25); border: 1px solid var(--theme-red); border-radius: 30px; margin-bottom: 25px;">
+                        <span style="color: var(--theme-light-red); font-weight: 700; letter-spacing: 2px; font-size: 0.9em;">AUTONOMOUS SYSTEMS</span>
+                    </div>
+                    <h1 style="color: var(--white); font-weight: 800; font-size: 3.8em; margin-bottom: 15px;">Obstacle Avoidance Robot</h1>
+                    <p style="font-size: 1.3em; color: var(--theme-light-red); font-weight: 500; text-align: center; max-width: 800px; margin: 0 auto;">A classic, effective robotics project built around the Arduino Uno and Sonar technology.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="section-padding">
+            <div class="container">
+                
+                <div class="row mb-5 anim-fade-up stagger-1">
+                    <div class="col-12">
+                        <div class="tech-card">
+                            <h2><i class="fas fa-microchip"></i> Hardware Interfacing and Logic</h2>
+                            
+                            <p>The brain of this project is the <strong>Arduino Uno</strong>. It makes all the decisions based on the information it gets from the sensors. To help the robot "see" its environment, we use an <strong>HC-SR04 Sonar Sensor</strong>. This sensor works like a bat's echolocation; it sends a sound wave through the Trig pin and listens for the echo through the Echo pin. We connect these pins to standard digital pins on the Arduino. When the echo returns quickly, the Arduino knows an object is too close and it is time to change direction.</p>
+                            
+                            <p>For movement, the Arduino alone cannot provide enough power to drive the <strong>Two Geared DC Motors</strong>. To solve this, we use the <strong>L298N Motor Driver</strong>. The motor driver connects directly to the battery for high power, while its logic pins (IN1, IN2, IN3, IN4) connect to the Arduino. This allows the Arduino to easily command the motors to go forward, backward, or turn. We also use a small <strong>Servo Motor</strong> to hold the sonar sensor. The servo is connected to a PWM (Pulse Width Modulation) pin on the Arduino, allowing it to smoothly sweep the sensor left and right to check for the best clear path before moving.</p>
+                            
+                            <p>Finally, we need a simple way to control and power the system. A basic <strong>Push Button</strong> is connected to a digital input pin so the user can easily start or pause the robot's movement. An <strong>LED</strong> is added as a visual indicator to show when the robot is active or when it detects a sudden block. The entire system is powered by a reliable <strong>Rechargeable Li-ion Battery Pack</strong>. The battery supplies raw power to the L298N motor driver, and the driver safely steps down the voltage to 5V to power the Arduino Uno and the rest of the logic components.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-2">
+                    <div class="col-lg-9 mx-auto">
+                        <div class="tech-card black-card">
+                            <h3 class="text-center"><i class="fas fa-plug"></i> Arduino Uno Pin Configuration</h3>
+                            <p class="text-center mb-4">Here is the straightforward connection guide used to interface all the external components to the main controller.</p>
+                            
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Component Node</th>
+                                        <th>Component Pin</th>
+                                        <th>Arduino Uno Pin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>HC-SR04 Sonar</strong></td>
+                                        <td>Trig Pin</td>
+                                        <td>Digital Pin 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>HC-SR04 Sonar</strong></td>
+                                        <td>Echo Pin</td>
+                                        <td>Digital Pin 10</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Servo Motor</strong></td>
+                                        <td>Signal Wire</td>
+                                        <td>Digital Pin 11 (PWM)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>L298N Motor Driver</strong></td>
+                                        <td>IN1 (Left Motor)</td>
+                                        <td>Digital Pin 4</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>L298N Motor Driver</strong></td>
+                                        <td>IN2 (Left Motor)</td>
+                                        <td>Digital Pin 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>L298N Motor Driver</strong></td>
+                                        <td>IN3 (Right Motor)</td>
+                                        <td>Digital Pin 6</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>L298N Motor Driver</strong></td>
+                                        <td>IN4 (Right Motor)</td>
+                                        <td>Digital Pin 7</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Push Button</strong></td>
+                                        <td>Output Signal</td>
+                                        <td>Digital Pin 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Status LED</strong></td>
+                                        <td>Anode (+)</td>
+                                        <td>Digital Pin 13</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-3">
+                    <div class="col-12">
+                        <div class="tech-card" style="border-left: none; border-top: 6px solid var(--theme-dark-red);">
+                            <h3 class="mb-4 text-center"><i class="fas fa-satellite-dish"></i> Sensor Details & Virtual Simulation</h3>
+                            <div class="row mt-4">
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/obstacter robot/pin out.jpg" alt="Sonar Pin Out">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/obstacter robot/inferfacing with arduno.jpg" alt="Arduino Interfacing">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box small-grid">
+                                        <img src="assets/img/My Projects/obstacter robot/Tinker Cad simulation.jpg" alt="TinkerCad Simulation">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="master-caption"><i class="fas fa-laptop-code"></i> HC-SR04 Sonar Pinout, Arduino Interfacing, and  Circuit Simulation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5 anim-fade-up stagger-1">
+                    <div class="col-12">
+                        <div class="tech-card" style="border-left: none; border-top: 6px solid var(--theme-black);">
+                            <h3 class="mb-4 text-center"><i class="fas fa-robot"></i> Physical Hardware Implementation</h3>
+                            <p class="text-center mb-4">The final assembled robot chassis featuring the L298N driver mounting, battery placement, and the front-mounted sweeping sonar assembly.</p>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box">
+                                        <img src="assets/img/My Projects/obstacter robot/WhatsApp Image 2026-07-08 at 3.05.22 PM (1).jpeg" alt="Robot Implementation 1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box">
+                                        <img src="assets/img/My Projects/obstacter robot/WhatsApp Image 2026-07-08 at 3.05.22 PM (2).jpeg" alt="Robot Implementation 2">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="media-box">
+                                        <img src="assets/img/My Projects/obstacter robot/WhatsApp Image 2026-07-08 at 3.05.22 PM.jpeg" alt="Robot Implementation 3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="master-caption"><i class="fas fa-cogs"></i> Final Assembled Obstacle Avoidance Robot Prototype</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="margin: 0; font-size: 0.9em; color: #aaa;">&copy; <script>document.write(new Date().getFullYear());</script> S M G A SIPKADUWA | Embedded Systems & Robotics .</p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+</body>
+</html>

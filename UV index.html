@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UV Intensity System | STM32 Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        /* Theme Colors */
+        :root {
+            --bg-light-blue: #e3f2fd;
+            --text-dark-blue: #003366;
+            --accent-blue: #0056b3;
+        }
+
+        body { 
+            background-color: var(--bg-light-blue); 
+            color: var(--text-dark-blue); 
+            font-family: 'Segoe UI', sans-serif; 
+            padding-bottom: 50px;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .nav-btn {
+            margin-left: 15px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+
+        /* Container & Content */
+        .project-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        h2 { color: var(--accent-blue); margin-top: 30px; border-bottom: 2px solid var(--accent-blue); display: inline-block; }
+
+        .img-featured { width: 100%; max-width: 700px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .img-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .img-item { width: 40%; }
+        .img-item img { width: 100%; border-radius: 8px; border: 1px solid #ddd; }
+
+        /* Video */
+        .video-box { width: 100%; max-width: 500px; margin: 20px auto; border: 4px solid #fff; border-radius: 10px; }
+
+        /* Button */
+        .btn-download { background: var(--accent-blue); color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .btn-download:hover { background: #004494; color: white; }
+		
+		.spec-table { width: 100%; margin: 20px 0; border: 1px solid #eee; }
+        .spec-table th, .spec-table td { padding: 12px; border: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar-custom d-flex justify-content-between align-items-center">
+    <div style="font-size: 1.4em; font-weight: bold; color: var(--text-dark-blue);">UV Measurement System</div>
+    <div class="d-flex">
+        <a class="nav-btn" href="index.html">HOME</a>
+        <a class="nav-btn" href="about.html">ABOUT</a>
+        <a class="nav-btn" href="blog_details.html">PROJECTS</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="project-card">
+        <h1 class="text-center">UV Intensity Measurement System</h1>
+        <p class="text-center"><em>STM32F411CEU6 | GUVA-S12SD | Beer-Lambert Application</em></p>
+
+        <h2>Prototype Setup</h2>
+        <div class="text-center">
+            <img src="assets/img/My Projects/Guva sensor/WhatsApp Image 2026-07-10 at 6.58.45 PM.jpg" class="img-featured" alt="Hardware Prototype">
+        </div>
+
+        <h2>Overview</h2>
+        <p>This project implements high-precision UV Index measurement. The system uses the <strong>GUVA-S12SD sensor</strong> connected to the STM32 ADC (PA5). We utilized a 16x4 LCD in 4-bit mode for real-time visualization.</p>
+
+        <h2>Visual Records</h2>
+        <div class="img-grid">
+            <div class="img-item">
+                <img src="assets/img/My Projects/Guva sensor/WhatsApp Image 2026-07-10 at 6.58.44 PM.jpg" alt="Working Prototype">
+                <p class="text-center"><small>Working Prototype Setup</small></p>
+            </div>
+            <div class="img-item">
+                <img src="assets/img/My Projects/Guva sensor/Capture.jpg" alt="LCD Display Output">
+                <p class="text-center"><small>16x4 LCD </small></p>
+            </div>
+        </div>
+		
+		<h2>Technical Specifications</h2>
+    <p>This project implements high-precision UV Index measurement. The system uses the GUVA-S12SD sensor connected to the STM32 ADC (PA5). We utilized a 16x4 LCD in 4-bit mode for real-time visualization.</p>
+    <table class="spec-table">
+        <tr><th>Component</th><th>Pin Configuration</th></tr>
+        <tr><td>MCU</td><td>STM32F411CEU6</td></tr>
+        <tr><td>Sensor</td><td>GUVA S12SD (ADC PA5)</td></tr>
+        <tr><td>LCD RS/EN</td><td>PB5 / PB6</td></tr>
+        <tr><td>LCD D4-D7</td><td>PB7, PB9, PB10, PB15</td></tr>
+		<tr><td>Buzzer</td><td>PB8</td></tr>
+    </table>
+
+        <h2>System Demonstration</h2>
+        <div class="video-box">
+            <video width="100%" controls>
+                <source src="assets/img/My Projects/Guva sensor/WhatsApp Video 2026-07-10 at 7.02.01 PM.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h2>Future Implementation: 24-bit ADC Upgrade</h2>
+        <p>To fully leverage the <strong>Beer-Lambert Law</strong>, which requires detecting very minute variations in light intensity (absorbance), we need higher precision. The standard 12-bit ADC of the STM32F411CEU6 is the limiting factor. Upgrading to an <strong>External 24-bit ADC</strong> will allow us to capture micro-fluctuations, drastically improving accuracy.</p>
+
+        <div class="edu-section" style="border: none;">
+    
+    <h3 class="section-title-custom"><i class="fas fa-code"></i> Source Firmware & Custom Project Files</h3>
+    <p>
+        For further study or reproduction of this project, you can download the complete STM32CubeIDE custom firmware source code (including the .ioc file). or visit My GitHub profile
+    </p>
+    <a href="guvasensor.zip" class="btn-download" download>
+   <i class="fas fa-file-archive"></i> Download STM32CubeIDE Project Firmware
+</a>
+</div>
+		 
+    </div>
+</div>
+
+<footer class="text-center mt-5" style="color: #666;">
+    <p>&copy; 2026 |  S M G A Sipkaduwa</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>Aflatoxin Detection System | Engineering Masterpiece</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/animate.min.css">
+   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+
+   <style>
+      /* Deep Blue & Ice White Theme (ඔබ ඉල්ලූ වර්ණ සංකලනය) */
+      body {
+         background-color: #0b1120; /* Very Dark Slate */
+         color: #e2e8f0; /* Off-white for text readability */
+         font-family: 'Segoe UI', system-ui, sans-serif;
+         overflow-x: hidden;
+      }
+      
+      /* Slim Header */
+      .header-area {
+         background: #0f172a !important;
+         border-bottom: 2px solid #0284c7;
+         padding: 5px 0 !important;
+      }
+      .main-header.header-sticky.sticky-bar {
+         padding: 5px 0 !important;
+         background: #0f172a !important;
+         animation: none !important;
+      }
+      .logo img {
+         height: 52px !important;
+         width: auto;
+         transition: transform 0.3s ease;
+      }
+      .logo img:hover {
+         transform: scale(1.03);
+      }
+      .main-menu ul li a {
+         color: #f8fafc !important;
+         font-weight: 600;
+         font-size: 15px;
+      }
+      .main-menu ul li a:hover {
+         color: #38bdf8 !important;
+      }
+
+      /* Master Hero Section (මාතෘකාවට එහා පැත්තෙන් පින්තූරය සහිතව) */
+      .master-hero {
+         background: radial-gradient(circle at top right, #1e293b, #0b1120);
+         padding: 80px 0 60px 0;
+         border-bottom: 1px solid #1e293b;
+         position: relative;
+      }
+      .master-hero h1 {
+         color: #f8fafc;
+         font-weight: 800;
+         font-size: 34px;
+         line-height: 1.4;
+         margin-bottom: 15px;
+      }
+      .opt-research-tag {
+         color: #38bdf8;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 2px;
+         font-size: 14px;
+         display: block;
+         margin-bottom: 10px;
+      }
+      
+      /* UI Layout Elements */
+      .section-title {
+         color: #38bdf8;
+         font-weight: 700;
+         font-size: 26px;
+         margin-bottom: 20px;
+         display: flex;
+         align-items: center;
+         gap: 15px;
+      }
+      .section-title::before {
+         content: "";
+         height: 30px;
+         width: 5px;
+         background: #38bdf8;
+         border-radius: 5px;
+      }
+
+      .glass-card {
+         background: #111827;
+         border: 1px solid #1e293b;
+         border-radius: 16px;
+         padding: 30px;
+         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+         transition: all 0.4s ease;
+         height: 100%;
+      }
+      .glass-card:hover {
+         transform: translateY(-8px);
+         border-color: #0284c7;
+         box-shadow: 0 15px 40px rgba(2, 132, 199, 0.2);
+      }
+      .light-card {
+         background: #f8fafc;
+         border-top: 4px solid #0284c7;
+         border-radius: 12px;
+         padding: 25px;
+         margin-bottom: 25px;
+         color: #334155;
+      }
+      .light-card h3 { color: #0f172a; font-weight: 700; }
+      .light-card p { color: #475569; }
+
+      /* Image Placeholders (ඔබ ඉල්ලූ පින්තූර සඳහා ඉඩකඩ) */
+      .img-placeholder {
+         width: 100%;
+         border-radius: 12px;
+         border: 2px dashed #38bdf8;
+         background: rgba(56, 189, 248, 0.05);
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         color: #94a3b8;
+         font-size: 14px;
+         text-align: center;
+         box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+         overflow: hidden;
+         transition: 0.3s;
+         margin-bottom: 20px;
+      }
+      .img-placeholder:hover {
+         border-color: #0ea5e9;
+         background: rgba(56, 189, 248, 0.1);
+         color: #38bdf8;
+      }
+      .img-placeholder i { font-size: 40px; margin-bottom: 10px; color: #475569; }
+      
+      /* Height variations */
+      .h-250 { height: 250px; }
+      .h-300 { height: 300px; }
+      .h-400 { height: 400px; }
+      .h-600 { height: 600px; } /* System Architecture සඳහා විශාල ඉඩ */
+
+      /* PDF Download Box */
+      .whitepaper-box {
+         background: linear-gradient(145deg, #0f172a, #1e293b);
+         border: 1px solid #334155;
+         padding: 20px;
+         border-radius: 10px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         margin: 25px 0;
+         transition: 0.3s;
+      }
+      .whitepaper-box:hover {
+         border-color: #38bdf8;
+         box-shadow: 0 10px 25px rgba(56,189,248,0.2);
+      }
+      
+      /* Typography */
+      p { font-size: 15.5px; line-height: 1.8; color: #cbd5e1; text-align: justify; }
+      .highlight { color: #38bdf8; font-weight: 600; }
+      .danger-text { color: #f43f5e; font-weight: 600; }
+      .safe-text { color: #10b981; font-weight: 600; }
+      
+      .formula-box {
+         background: #0f172a;
+         border-left: 4px solid #38bdf8;
+         padding: 15px;
+         text-align: center;
+         border-radius: 4px 8px 8px 4px;
+         margin: 20px 0;
+         font-size: 17px;
+         font-weight: 600;
+         color: #38bdf8;
+         font-family: 'Courier New', Courier, monospace;
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <div class="header-area">
+         <div class="main-header header-sticky">
+            <div class="container-fluid">
+               <div class="row align-items-center">
+                  <div class="col-xl-4 col-lg-3 col-md-3">
+                     <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt="Engineering Logo"></a>
+                     </div>
+                  </div>
+                  <div class="col-xl-8 col-lg-9 col-md-9">
+                     <div class="menu-main d-flex align-items-center justify-content-end">
+                        <div class="main-menu d-none d-lg-block">
+                           <nav> 
+                              <ul id="navigation" style="margin-bottom: 0;">
+                                 <li><a href="index.html">Home</a></li>
+                                 <li><a href="about.html">About</a></li>
+                                 <li><a href="blog_details.html" style="color: #38bdf8 !important;">Projects</a></li>
+                              </ul>
+                           </nav>
+                        </div>
+                     </div>
+                  </div>   
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <main>
+      <section class="master-hero">
+         <div class="container">
+            <div class="row align-items-center">
+               <div class="col-lg-7">
+                  <span class="opt-research-tag">Advanced Optoelectronic Research</span>
+                  <h1>IDENTIFICATION AND INVESTIGATION OF AFLATOXIN PRESENCE AND VARIETIES IN CORN FLOUR</h1>
+                  <p class="mt-3">A portable, 2-stage semi-automatic optoelectronic system engineered for field deployment. Combining spectroscopy methodologies, precise CNC scanning, and custom STM32 firmware to execute rapid, laboratory-grade food safety diagnostics in agricultural zones.</p>
+               </div>
+              <div class="col-lg-5">
+    <!-- මෙතැනට style එක එකතු කළා -->
+    <div class="img-placeholder h-300" style="overflow: hidden; border-radius: 12px; padding: 0 !important; position: relative;">
+        
+        <!-- පින්තූරයටත් style එක එකතු කළා -->
+        <img src="assets/img/My%20Projects/Aflatoxin/Aflatoxin%20in%20corn.jpg" 
+             alt="Complete Portable Diagnostic Unit" 
+             style="width: 100%; height: 100%; object-fit: cover; display: block;">
+             
+    </div>
+</div>
+            </div>
+         </div>
+      </section>
+
+      <section class="section-padding" style="background: #f8fafc; padding: 60px 0;">
+         <div class="container">
+            <div class="row align-items-center mb-50">
+   
+   <!-- වම් පැත්ත: පින්තූරය -->
+   <div class="col-lg-6">
+      <div class="img-placeholder h-300" style="overflow: hidden; border-radius: 12px; padding: 0 !important; position: relative;">
+         <img src="assets/img/My%20Projects/Aflatoxin/toxic.JPG" 
+              alt="Fungal Contamination" 
+              style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+      <small style="display: block; margin-top: 10px; text-align: center; color: #475569;">Aflatoxin_chamical Body</small>
+   </div>
+
+   <!-- දකුණු පැත්ත: ටෙක්ස්ට් එක -->
+   <div class="col-lg-6">
+      <div class="section-tittle">
+         <h2 style="font-size: 32px; color: #0f172a; margin-bottom: 20px;">Fungal Mycotoxins & Food Safety Rigor</h2>
+         <p style="color: #475569; line-height: 1.8;">
+            <b>Aflatoxins</b> represent a group of highly toxic, carcinogenic secondary metabolites synthesized predominantly by <b>Aspergillus flavus</b> molds. 
+            These fungal pathogens typically compromise agricultural yields under volatile thermal and high-humidity storage states. 
+            Reflecting their severe health implications, the World Health Organization (WHO) mandates a rigid safety ceiling of <b>20 ppb (parts per billion)</b> for consumer food stocks.
+         </p>
+      </div>
+   </div>
+
+</div>
+            
+            <div class="row align-items-center">
+               <div class="col-lg-6 order-2 order-lg-1">
+                  <div class="light-card" style="box-shadow: none; border: none; background: transparent;">
+                     <h3 style="color: #0369a1; font-weight: 700; border-left: 5px solid #0284c7; padding-left: 15px;">Demographic Vulnerability & Diagnostics</h3>
+                     <p>
+                        Maize and derived flour derivatives constitute a substantial portion of staple diets globally, serving as primary ingredients in nutritional formulations engineered for sensitive demographics, notably <strong>infants, toddlers, and expectant mothers</strong>. Addressing this critical screening bottleneck, a specialized optoelectronic verification platform was developed to execute automated variety identification and rapid toxic concentration checks.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-lg-6 order-1 order-lg-2">
+   <!-- border: none; සහ padding: 0; මගින් කඩ ඉරි සහ හිස් ඉඩ සම්පූර්ණයෙන්ම ඉවත් කර ඇත -->
+   <div class="img-placeholder h-300" style="border: none !important; background: transparent; overflow: hidden; border-radius: 12px; padding: 0 !important; position: relative;">
+      
+      <img src="assets/img/My%20Projects/Aflatoxin/Gemini_Generated_Image_oi3i1oi3i1oi3i1o.jpg" 
+           alt="Demographic Vulnerability Impact" 
+           style="width: 100%; height: 100%; object-fit: cover; display: block;">
+           
+   </div>
+   <small style="display: block; margin-top: 10px; text-align: center; color: #475569;"> Propossed Optoelectronic System</small>
+</div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <section style="padding: 60px 0; background: #0f172a; border-top: 1px solid #1e293b;">
+         <div class="container">
+            <div class="row">
+               <div class="col-12 text-center">
+                  <h2 class="section-title justify-content-center">Core System Architecture</h2>
+                  <p class="text-center mx-auto" style="max-width: 800px;">The integration of optoelectronic hardware, CNC scanning elements, and firmware protocols requires a rigid structural layout. Below represents the complete block flow diagram and the diagnostic layout.</p>
+               </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-lg-12">
+   <!-- මෙතන background එකට #ffffff (සුදු පාට) දැම්මා, එතකොට පින්තූරේ background එකත් එක්ක ලස්සනට මැච් වෙනවා -->
+   <div class="img-placeholder h-600" style="border: none !important; background: #ffffff; overflow: hidden; border-radius: 16px; padding: 20px !important; position: relative;">
+      
+      <!-- object-fit එක contain ලෙස වෙනස් කර ඇත -->
+      <img src="assets/img/My%20Projects/Aflatoxin/system%20archtecture.jpg" 
+           alt="High-Level System Flow & Hardware Interconnection" 
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
+           
+   </div>
+   <small style="display: block; margin-top: 15px; text-align: center; color: #475569; font-size: 14px; font-weight: 500;">High-Level System Flow & Hardware Interconnection</small>
+</div>
+   <small style="display: block; margin-top: 15px; text-align: center; color: #475569; font-size: 14px; font-weight: 500;">System Block Diagram</small>
+</div>
+               </div>
+            </div>
+            
+      </section>
+
+      </section> <!-- කලින් සෙක්ෂන් එක ඉවර වන තැන -->
+
+      <section class="section-padding" style="padding: 60px 0;">
+         <div class="container">
+            <div class="row align-items-center mb-50">
+
+               <!-- වම් පැත්ත: පින්තූරය (දැන් වීදුරු කාඩ් එකට සමාන්තරව ලස්සනට හිටිනවා) -->
+               <div class="col-lg-5 order-2 order-lg-1">
+                  <div class="img-placeholder h-400" style="border: none !important; background: transparent; overflow: hidden; border-radius: 12px; padding: 0 !important; position: relative;">
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-03%20at%209.58.39%20PM.jpg.jpg" 
+                          alt="Aflatoxin Microorganism & UV Exposure Concept" 
+                          style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                  </div>
+                  <small style="display: block; margin-top: 10px; text-align: center; color: #475569;">Aflatoxin Microorganism & UV Exposure Concept</small>
+               </div>
+
+               <!-- දකුණු පැත්ත: ඔබේ පරණ Glass Card එක ඇතුළටම අලුත් පාට කරපු ටෙක්ස්ට් එක දැම්මා -->
+               <div class="col-lg-7 order-1 order-lg-2 mb-4">
+                  <div class="glass-card">
+                     <h2 class="section-title">Photoluminescence & Spectroscopy Theory</h2>
+                     
+                     <p style="text-align: justify; margin-bottom: 15px;">
+                        At the core of this system is advanced spectroscopy methodology. When exposed to Ultraviolet (UV) light, aflatoxin molecules absorb energy, causing their electrons to elevate to a higher, unstable orbital state.
+                     </p>
+                     
+                     <p style="text-align: justify; margin-bottom: 15px;">
+                        As these electrons return to their stable ground state, they release energy in the form of photons. This <span style="color: #38bdf8; font-weight: 600;">UV Fluorescence</span> manifests as specific visible colors: <span style="color: #ef4444; font-weight: 600;">Aflatoxin-B emits Blue light</span> (indicating a higher risk factor), while <span style="color: #22c55e; font-weight: 600;">Aflatoxin-G emits Green light</span>.
+                     </p>
+                     
+                     <p style="text-align: justify; margin-bottom: 0;">
+                        These minuscule photon emissions are captured utilizing photo-electrostatic theory, translating light intensity into readable electronic signals via linear imaging arrays.
+                     </p>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      <!-- ඊළඟට තියෙන සෙක්ෂන් එක (Stage 1) මෙතැන් සිට සාමාන්‍ය පරිදි ආරම්භ වේ -->
+      <section style="background: #0f172a; padding: 60px 0; border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b;">      <section style="background: #0f172a; padding: 60px 0; border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b;">
+         <div class="container">
+            <div class="row mb-5">
+               <div class="col-12 text-center">
+                  <h2 style="color: #f8fafc; font-weight: 800;">Stage 1: Fluorescence Identification & CNC Scanning</h2>
+               </div>
+            </div>
+
+            <div class="row align-items-center mb-5">
+               <!-- වම් පැත්ත: ලේඛන සහ PDF බාගත කිරීමේ කොටස -->
+<!-- වම් පැත්ත: ලේඛන සහ PDF බාගත කිරීමේ කොටස -->
+               <!-- Stage 1 Grid Layout Start -->
+            <div class="row align-items-center mb-5">
+               
+               <!-- වම් පැත්ත: විස්තර සහ PDF බාගත කිරීමේ කොටස (col-lg-7) -->
+               <div class="col-lg-7">
+                  <h3 style="color: #38bdf8; font-size: 22px; font-weight: 700; margin-bottom: 15px;">Sony ILX555K Linear CCD Integration</h3>
+                  <p>
+                     To capture the extremely faint light emitted by the aflatoxin spores, the <strong>Sony ILX555K RGB-capable CCD sensor</strong> was selected. According to the datasheet, this sensor typically operates at a 1-5MHz master clock. However, to capture "tiny light", the <strong>shutter (exposure) time had to be significantly increased</strong>.
+                  </p>
+                  <p>
+                     By carefully analyzing the timing diagrams, rise times, and falling times, I successfully down-converted the two master clocks and the 4 synchronized input signals (Ø1, Ø2, RS, ROG) to <strong>500kHz</strong>, pushing the sensor beyond its standard operational bounds for maximum light sensitivity.
+                  </p>
+                  
+                  <!-- පිරිසිදු කරන ලද තනි මට්ටමේ Clickable PDF Box එක -->
+                  <a href="ILX555K Data sheet.PDF" target="_blank" class="whitepaper-box" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none; background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #2e3e56; transition: background 0.3s ease; width: 100%; margin-top: 20px;">
+                     
+                     <!-- වම් පැත්ත: ලියවිල්ල -->
+                     <div>
+                        <strong style="display: block; color: #f8fafc; font-size: 16px; margin-bottom: 6px; font-weight: 600;">Sony ILX555K Datasheet & Timing Diagrams</strong>
+                        <p style="margin: 0; font-size: 13px; color: #94a3b8; text-decoration: none;">Technical reference for clock synchronization.</p>
+                     </div>
+                     
+                     <!-- දකුණු පැත්ත: PDF අයිකන් එක -->
+                     <div style="color: #38bdf8; font-size: 22px; margin-left: 15px;">
+                        <i class="fas fa-file-pdf"></i>
+                     </div>
+
+                  </a>
+               </div> <!-- col-lg-7 ඉවර වන තැන -->
+
+               <!-- දකුණු පැත්ත: Custom Driver Circuit පින්තූරය (col-lg-5) -->
+               <div class="col-lg-5">
+                  <div class="img-placeholder h-300" style="border: none !important; background: #1e293b; overflow: hidden; border-radius: 12px; padding: 10px !important; position: relative; margin-bottom: 0;">
+                     
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-04%20at%203.19.46%20PM.jpg" 
+                          alt="Custom CCD Driver Circuit" 
+                          style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                          
+                  </div>
+                  <small style="display: block; margin-top: 10px; text-align: center; color: #94a3b8;">Custom CCD Driver Circuit</small>
+               </div> <!-- col-lg-5 ඉවර වන තැන -->
+
+            </div> <!-- Row එක ඉවර වන තැන -->
+           
+
+            <div class="row mb-5">
+               <div class="col-lg-12">
+                  <div class="glass-card">
+                     <h3 style="color: #38bdf8; font-size: 22px;">STM32F411CEU6 Firmware & ADC Optimization</h3>
+                     <p>Generating highly stable, synchronized clock signals is a severe challenge. The <strong>STM32F411CEU6</strong> controller was selected. Its ability to easily configure the system clock to <strong>100MHz</strong> allowed for flawless generation of the required 500kHz signals using advanced timer features.</p>
+                     <p><strong>Overcoming Limitations:</strong> The CCD outputs 3 analog signals (RGB). Reading all three simultaneously via ADC at high speeds caused resolution drops. The firmware was customized to execute a <strong>Synchronous Color-Multiplexing Algorithm</strong>: the system reads only ONE color per sweep, completely bypassing ADC limitations and maximizing resolution.</p>
+                  </div>
+               </div>
+            </div>
+            
+            <!-- STM32CubeIDE Configurations - Centered Vertical Stack -->
+            <div class="row mb-5">
+               <div class="col-lg-10 mx-auto">
+                  
+                  <!-- Image 01: Pin Configuration -->
+                  <div class="mb-40 text-center">
+                     <div class="img-placeholder" style="border: none !important; background: #1e293b; overflow: hidden; border-radius: 12px; padding: 10px !important; height: auto; max-height: 550px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <img src="assets/img/My%20Projects/Aflatoxin/ioc%20pin%20cofig.JPG" 
+                             alt="STM CUBE IDE PIN CONFIGURE" 
+                             style="width: 100%; height: auto; max-height: 530px; object-fit: contain; display: block; margin: 0 auto;">
+                     </div>
+                     <small style="display: block; margin-top: 12px; text-align: center; color: #94a3b8; font-size: 14px; font-weight: 500;">STM CUBE IDE PIN CONFIGURE</small>
+                  </div>
+
+                  <!-- Image 02: Clock Configuration -->
+                  <div class="mb-40 text-center">
+                     <div class="img-placeholder" style="border: none !important; background: #1e293b; overflow: hidden; border-radius: 12px; padding: 10px !important; height: auto; max-height: 550px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <img src="assets/img/My%20Projects/Aflatoxin/clk config.JPG" 
+                             alt="STM CUBE IDE CUSTOM FIRMWARE SETTINGS" 
+                             style="width: 100%; height: auto; max-height: 530px; object-fit: contain; display: block; margin: 0 auto;">
+                     </div>
+                     <small style="display: block; margin-top: 12px; text-align: center; color: #94a3b8; font-size: 14px; font-weight: 500;">STM CUBE IDE CUSTOM FIRMWARE SETTINGS</small>
+                  </div>
+
+                  <!-- Image 03: Timer Configuration -->
+                  <div class="mb-40 text-center">
+                     <div class="img-placeholder" style="border: none !important; background: #1e293b; overflow: hidden; border-radius: 12px; padding: 10px !important; height: auto; max-height: 550px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <img src="assets/img/My%20Projects/Aflatoxin/timer_01.JPG" 
+                             alt="CUBE IDE TIMMER 01 FEATURE CONFIG" 
+                             style="width: 100%; height: auto; max-height: 530px; object-fit: contain; display: block; margin: 0 auto;">
+                     </div>
+                     <small style="display: block; margin-top: 12px; text-align: center; color: #94a3b8; font-size: 14px; font-weight: 500;">CUBE IDE TIMMER 01 FEATURE CONFIG</small>
+                  </div>
+
+                  <!-- Image 04: ADC Configuration -->
+                  <div class="mb-40 text-center">
+                     <div class="img-placeholder" style="border: none !important; background: #1e293b; overflow: hidden; border-radius: 12px; padding: 10px !important; height: auto; max-height: 550px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <img src="assets/img/My%20Projects/Aflatoxin/adc_01.JPG" 
+                             alt="CUBE IDE ADC_01 CONFIG" 
+                             style="width: 100%; height: auto; max-height: 530px; object-fit: contain; display: block; margin: 0 auto;">
+                     </div>
+                     <small style="display: block; margin-top: 12px; text-align: center; color: #94a3b8; font-size: 14px; font-weight: 500;">CUBE IDE ADC_01 CONFIG</small>
+                  </div>
+
+               </div>
+            </div>
+
+           <div class="row align-items-center">
+               
+               <!-- වම් පැත්ත: CNC වීඩියෝව -->
+               <div class="col-lg-6">
+                  <div class="video-container" style="border: none !important; background: #1e293b; overflow: hidden; border-radius: 12px; padding: 10px !important; height: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                     <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                        <source src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Video%202026-07-05%20at%2011.34.45%20AM.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                     </video>
+                  </div>
+                  <small style="display: block; margin-top: 12px; text-align: center; color: #94a3b8;">CNC Flatbed Scanning Mechanism in Dark Chamber</small>
+               </div>
+
+               <!-- දකුණු පැත්ත: විස්තර (කිසිවක් වෙනස් කර නැත) -->
+               <div class="col-lg-6">
+                  <h3 style="color: #38bdf8; font-size: 22px;">Electromechanical Flatbed Scanning</h3>
+                  <p>Because full image processing wasn't required (only detecting Blue vs. Green intensities), a custom <strong>Mechanical CNC Scanning System</strong> was built inside a dark chamber (to block ambient light).</p>
+                  <ul style="color: #cbd5e1; font-size: 15.5px; line-height: 1.8;">
+                     <li><strong>Drive System:</strong> PK268E2 Stepper Motor controlled by an A4988 motor driver.</li>
+                     <li><strong>Scanning Logic:</strong> Motor rotates in strict synchronization with the CCD scan process.</li>
+                     <li><strong>Process:</strong> The CCD moves forward scanning exclusively for <span class="danger-text">Blue</span>. It then reverses, scanning for <span class="safe-text">Green</span>.</li>
+                  </ul>
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      <section class="section-padding" style="padding: 60px 0; background-color: #0f172a;">
+         <div class="container">
+            
+            <!-- Main Title -->
+            <div class="row mb-5">
+               <div class="col-12 text-center">
+                  <h2 style="color: #f8fafc; font-weight: 800; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);">Stage 2: Quantification via Beer-Lambert Law</h2>
+               </div>
+            </div>
+
+            <!-- Theory, Text & Generated Diagram Section -->
+            <div class="row align-items-center mb-5">
+               
+               <!-- වම් පැත්ත: Lab Preparation (Fixed Equations) -->
+               <div class="col-lg-6 mb-4">
+                  <div class="glass-card" style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+                     <h3 style="color: #38bdf8; font-size: 22px; margin-bottom: 15px;">Sample Preparation & Optical Measurement</h3>
+                     
+                     <p style="color: #cbd5e1; line-height: 1.7; margin-bottom: 15px;">
+                        To ensure accurate optical readings, raw corn samples and controlled fungal cultures underwent a rigorous laboratory preparation protocol before UV analysis.
+                     </p>
+
+                     <ul style="color: #cbd5e1; font-size: 15px; line-height: 1.8; margin-bottom: 20px; padding-left: 20px;">
+                        <li><strong>Fungal Culturing:</strong> Pure strains of Aflatoxin-producing fungi (<em>Aspergillus flavus</em>) were carefully cultured on Potato Dextrose Agar (PDA) media at the OUSL Botany Lab. Incubation parameters were strictly controlled to establish baseline toxicity references.</li>
+                        <li><strong>Extraction Process:</strong> Infected corn samples were finely ground, dissolved in an Ethanol-based solvent to isolate the mycotoxins, and deeply filtered to remove solid particulates.</li>
+                        <li><strong>Optical Scanning:</strong> The clear, filtered extract is placed in a Quartz test tube. UV light is passed through it, and a <strong>GUVA-S12SD UV Sensor</strong> measures the transmitted light intensity.</li>
+                     </ul>
+                     
+                     <!-- Equation Box Fixed -->
+                     <div class="formula-box" style="background: #0f172a; padding: 15px; border-radius: 8px; color: #00f6ff; text-align: center; margin: 20px 0; border: 1px dashed #38bdf8; font-size: 20px; font-weight: 700; text-shadow: 0 0 8px rgba(0, 246, 255, 0.4);">
+                        Beer-Lambert Absorbance Model: A = &epsilon; &middot; c &middot; l
+                     </div>
+                     
+                     <p style="color: #cbd5e1; line-height: 1.7; margin-bottom: 0;">
+                        <strong>Quantification:</strong> Utilizing the Beer-Lambert Law, the precise absorbance (A) is calculated. By comparing this against the PDA-cultured calibration data, the exact Aflatoxin concentration in the sample is determined.
+                     </p>
+                  </div>
+               </div>
+               
+               <!-- දකුණු පැත්ත: AI Beer-Lambert රූපය (Added Hover Effect) -->
+               <div class="col-lg-6 mb-4">
+                  <div class="img-placeholder" style="background: #1e293b; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); border: 1px solid #2e3e56; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                     <img src="assets/img/My%20Projects/Aflatoxin/Gemini_Generated_Image_q567wwq567wwq567.jpg" 
+                          alt="Beer-Lambert Law Illustration" 
+                          style="width: 100%; height: auto; border-radius: 8px; display: block;">
+                  </div>
+                  <small style="display: block; text-align: center; margin-top: 12px; color: #94a3b8; font-size: 14px;">
+                     Figure: Principle of the Beer-Lambert Law applied in optical sensing
+                  </small>
+               </div>
+            </div>
+			
+			<!-- 4. Calibration & Mathematical Model -->
+<!-- 4. Calibration & Mathematical Model -->
+<section style="padding: 60px 20px; background-color: #0b1120; color: #e2e8f0; font-family: 'Segoe UI', sans-serif;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        
+        <h2 style="color: #38bdf8; border-bottom: 2px solid #38bdf8; padding-bottom: 15px; margin-bottom: 30px; font-weight: 600; font-size: 1.75rem;">
+            4. Sensor Calibration & Mathematical Characterization
+        </h2>
+        
+        <p style="line-height: 1.8; color: #cbd5e1; margin-bottom: 35px; font-size: 1.05rem; text-align: justify;">
+            To establish a robust technical validation for the system, an empirical sensor response calibration was executed. By analyzing the raw voltage outputs against known standard concentrations, an exponential attenuation curve was mapped. Applying the <strong>Beer-Lambert Law</strong>,
+            </span>. 
+            This mathematical framework allows the STM32F411 core to directly compute precise parts-per-million (ppm) concentration metrics from raw optical density readings.
+        </p>
+
+        <div style="background: rgba(30, 41, 59, 0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.25); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); text-align: center;">
+            <!-- Path using %20 for space in 'My Projects' and 'math lab curve.jpg' -->
+            <img src="assets/img/My%20Projects/Aflatoxin/math%20lab%20curve.jpg" 
+                 style="width: 100%; height: auto; max-width: 950px; border-radius: 8px; display: block; margin: 0 auto;" 
+                 alt="Sensor Calibration Curves">
+            
+            <div style="margin-top: 18px; border-top: 1px solid rgba(226, 232, 240, 0.1); padding-top: 12px;">
+                <p style="color: #94a3b8; font-size: 0.95rem; margin: 0;">
+                    <strong>Fig:</strong> Analytical sensor response profile depicting raw sensor voltage attenuation (semi-log scale) and corresponding Beer-Lambert linear absorbance verification.
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+            <!-- Lab Culturing and Sample Images Gallery (Fixed Grid & Added Decorations) -->
+            <div class="row mt-5">
+               <div class="col-12 mb-4">
+                  <h4 style="color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.3); padding-bottom: 15px; font-size: 22px;">
+                     <i class="fas fa-microscope" style="margin-right: 10px; color: #00f6ff;"></i> OUSL Botany Lab: Sample Preparation & Analysis
+                  </h4>
+               </div>
+            </div>
+
+            <!-- Gallery Row 1: 3 Images -->
+            <div class="row">
+               <!-- Image 1 -->
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div style="background: #1e293b; padding: 10px; border-radius: 12px; border: 1px solid #2e3e56; box-shadow: 0 10px 20px rgba(0,0,0,0.4); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#2e3e56';">
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%2012.28.32%20PM.jpeg" 
+                          alt="Quartz Test Tube Sample" 
+                          style="width: 100%; height: 240px; object-fit: cover; border-radius: 8px;">
+                     <small style="display: block; text-align: center; margin-top: 10px; color: #e2e8f0; font-weight: 500;">Filtered Ethanol Sample in Cuvette</small>
+                  </div>
+               </div>
+
+               <!-- Image 2 -->
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div style="background: #1e293b; padding: 10px; border-radius: 12px; border: 1px solid #2e3e56; box-shadow: 0 10px 20px rgba(0,0,0,0.4); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#2e3e56';">
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%2012.28.36%20PM.jpeg" 
+                          alt="Corn Sample under UV" 
+                          style="width: 100%; height: 240px; object-fit: cover; border-radius: 8px;">
+                     <small style="display: block; text-align: center; margin-top: 10px; color: #e2e8f0; font-weight: 500;">Contaminated Sample under UV Light</small>
+                  </div>
+               </div>
+
+               <!-- Image 3 (FIXED PATH AND EXTENSION) -->
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div style="background: #1e293b; padding: 10px; border-radius: 12px; border: 1px solid #2e3e56; box-shadow: 0 10px 20px rgba(0,0,0,0.4); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#2e3e56';">
+                     
+                     <!-- වෙනස මෙතනයි: අවසානයේ ඇති .jpg වෙනුවට .jpeg දමා ඇත -->
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%2012.28.30%20PM.jpeg" 
+                          alt="Aflatoxin Spore Morphology" 
+                          style="width: 100%; height: 240px; object-fit: cover; border-radius: 8px;">
+                     
+                     <small style="display: block; text-align: center; margin-top: 10px; color: #e2e8f0; font-weight: 500;">Microscopic View: Aflatoxin Spores</small>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Gallery Row 2: 2 Larger Images -->
+            <div class="row mt-2">
+               <!-- Image 4 -->
+               <div class="col-lg-6 col-md-6 mb-4">
+                  <div style="background: #1e293b; padding: 10px; border-radius: 12px; border: 1px solid #2e3e56; box-shadow: 0 10px 20px rgba(0,0,0,0.4); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#2e3e56';">
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%2012.28.31%20PM.jpeg" 
+                          alt="PDA Media Culture Tests" 
+                          style="width: 100%; height: 320px; object-fit: cover; border-radius: 8px;">
+                     <small style="display: block; text-align: center; margin-top: 10px; color: #e2e8f0; font-weight: 500;">Aflatoxin Culture in PDA Media (Set A)</small>
+                  </div>
+               </div>
+
+               <!-- Image 5 -->
+               <div class="col-lg-6 col-md-6 mb-4">
+                  <div style="background: #1e293b; padding: 10px; border-radius: 12px; border: 1px solid #2e3e56; box-shadow: 0 10px 20px rgba(0,0,0,0.4); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#2e3e56';">
+                     <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%2012.28.34%20PM.jpeg" 
+                          alt="PDA Media Culture Close-up" 
+                          style="width: 100%; height: 320px; object-fit: cover; border-radius: 8px;">
+                     <small style="display: block; text-align: center; margin-top: 10px; color: #e2e8f0; font-weight: 500;">Aflatoxin Culture in PDA Media (Set B)</small>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+    <!-- 1. Results and Microscopy Section -->
+<section style="padding: 60px 20px; background-color: #050a14; color: #e2e8f0; font-family: 'Segoe UI', sans-serif;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: #38bdf8; border-bottom: 2px solid #38bdf8; padding-bottom: 15px; margin-bottom: 30px;">Microscopy & Sample Analysis</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.02.27%20PM%20(1).jpeg" style="width: 100%; border-radius: 12px; border: 2px solid #38bdf8;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.04.31%20PM.jpeg" style="width: 100%; border-radius: 12px; border: 2px solid #38bdf8;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.04.30%20PM%20(2).jpeg" style="width: 100%; border-radius: 12px; border: 2px solid #38bdf8;">
+        </div>
+    </div>
+</section>
+
+<!-- 2. Interface Section -->
+<section style="padding: 40px 20px; background-color: #0b1120; color: #e2e8f0;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: #38bdf8; margin-bottom: 20px;">System Interface & Real-time Alerts</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.02.25%20PM%20(1).jpeg" style="width: 100%; border-radius: 12px; border: 1px solid #1e293b;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.02.15%20PM.jpeg" style="width: 100%; border-radius: 12px; border: 1px solid #1e293b;">
+        </div>
+    </div>
+</section>
+
+<!-- 3. Hardware Section -->
+<section style="padding: 40px 20px; background-color: #050a14; color: #e2e8f0;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: #38bdf8; margin-bottom: 20px;">Hardware & Mechanical Assembly</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.04.30%20PM.jpeg" style="width: 100%; border-radius: 12px;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.02.28%20PM.jpeg" style="width: 100%; border-radius: 12px;">
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.02.26%20PM%20(1).jpeg" style="width: 100%; border-radius: 12px;">
+        </div>
+        
+        <div style="background: rgba(30, 41, 59, 0.4); padding: 30px; border-radius: 20px; border: 1px solid #38bdf8;">
+            <h3 style="color: #38bdf8; text-align: center;">STM32F411 Custom Embedded System</h3>
+            <img src="assets/img/My%20Projects/Aflatoxin/WhatsApp%20Image%202026-07-05%20at%201.04.29%20PM.jpeg" style="width: 100%; max-width: 400px; display: block; margin: 15px auto; border-radius: 10px;">
+            <p style="text-align: center; color: #94a3b8; font-style: italic;">Custom PCB design optimized for CCD timing and high-precision sensing.(Mother Board)</p>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Conclusion & Future -->
+<section style="padding: 50px 20px; background-color: #0b1120; color: #cbd5e1;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="color: #fff;">Conclusion</h2>
+        <p style="line-height: 1.8; margin-bottom: 40px;">The primary objective of this research was to address the critical need for a portable, cost-effective method for detecting aflatoxin in Corn products. Through the integration of CCD-based fluorescence imaging and Beer–Lambert-based absorbance spectroscopy, this project successfully demonstrated the functional feasibility of a two-stage optoelectronic system.
+By utilizing the STM32F4 microcontroller to generate precise, synchronized signals for the Sony ILX555K CCD array, this research successfully established a functional baseline for identifying toxin presence. Currently, the system operates across a detection range of 190 ppm to 100,000 ppm. While the current prototype validates the fundamental operating principle, bridging the gap to the WHO-mandated safety threshold of 20 ppb requires a transition toward higher-resolution instrumentation. This work provides the technical blueprint for that transition, confirming that by optimizing the optical path and increasing the resolution of the data acquisition chain, the platform can evolve from an experimental sensing model into a robust, field-deployable diagnostic tool for ensuring food safety.
+</p>
+        
+        <h2 style="color: #fff;">Future Implementations</h2>
+        <ul style="line-height: 2;">
+            <li><strong>Hyperspectral Analysis:</strong> •	The current detection range is limited by the bit-depth of the Analog-to-Digital Converter. Transitioning to a 24-bit (or higher) ADC architecture is essential. This upgrade will significantly decrease the quantization error, allowing the system to resolve the minute changes in light intensity required to detect concentrations at the parts-per-billion (ppb) level, moving well beyond the current ppm-based detection limits.
+•	To overcome signal attenuation at low aflatoxin concentrations, the integration of a prism and convex lens assembly is proposed. This will allow for the precise focus and diffraction of emitted fluorescence onto the CCD sensor, effectively increasing the signal-to-noise ratio and ensuring that the tiny light photons emitted by low-concentration samples are captured with higher fidelity.
+•	By pairing the enhanced 24-bit ADC with a more advanced, high-linearity UV index sensor, the system will achieve greater accuracy in measuring absorbance. This ensures that the Beer–Lambert Law calculations are grounded in high-resolution data, minimizing experimental drift and improving the reliability of the concentration estimates.
+•	Future implementation of narrow-band UV filters will isolate specific excitation/emission wavelengths for Aflatoxin B and G varieties. This will further reduce ambient noise, allowing the CCD to distinguish target emissions from background interference more effectively.
+</li>
+           
+        </ul>
+    </div>
+</section>
+
+<!-- 5. Footer Rights -->
+<footer style="padding: 30px; background-color: #050a14; text-align: center; color: #64748b; border-top: 1px solid #1e293b;">
+    <p>&copy; 2026 S M G A Sipkaduwa. All Rights Reserved.</p>
+    
+</footer>
+
+   <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+   <script src="./assets/js/bootstrap.min.js"></script>
+   <script src="./assets/js/main.js"></script>
+</body>
+</html>
